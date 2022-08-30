@@ -12,18 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "product",uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"idsize","idcolor","idcategory","idproducttype"})
-})
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false,length = 100)
+    @Column(nullable = false,columnDefinition = "nvarchar(200)")
     private String name;
     @Column(nullable = false)
     private double price;
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false,columnDefinition = "nvarchar(200)")
     private String description;
     @Column(nullable = false, length = 70)
     private String photo;

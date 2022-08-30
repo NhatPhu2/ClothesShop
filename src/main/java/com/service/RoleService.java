@@ -1,13 +1,13 @@
 package com.service;
 
-import com.DTO.RoleDto;
+import com.DTO.RoleDTO;
 
 import java.util.List;
 
 public interface RoleService {
-    List<RoleDto> findAll();
-    RoleDto findById(Integer id);
-    void create(RoleDto RoleDto);
-    void update(RoleDto RoleDto);
+    List<RoleDTO> findAll();
+    RoleDTO findById(Integer id);
+    void create(RoleDTO RoleDto);
+    void update(RoleDTO RoleDto);
     void remove(Integer id);
 }

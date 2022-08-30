@@ -16,7 +16,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false ,length = 60)
+    @Column(nullable = false,columnDefinition = "nvarchar(60)")
     private String fullname;
     @Column(nullable = false, length = 50)
     private String email;

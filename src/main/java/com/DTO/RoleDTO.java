@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
-public class RoleDto implements Serializable {
+public class RoleDTO implements Serializable {
     private final String id;
     private final String name;
 }

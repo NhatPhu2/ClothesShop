@@ -1,13 +1,13 @@
 package com.service;
 
-import com.DTO.CustomerDto;
+import com.DTO.CustomerDTO;
 
 import java.util.List;
 
 public interface CustomerService {
-    List<CustomerDto> findAll();
-    CustomerDto findById(Integer id);
-    void create(CustomerDto CustomerDto);
-    void update(CustomerDto CustomerDto);
+    List<CustomerDTO> findAll();
+    CustomerDTO findById(Integer id);
+    void create(CustomerDTO CustomerDto);
+    void update(CustomerDTO CustomerDto);
     void remove(Integer id);
 }

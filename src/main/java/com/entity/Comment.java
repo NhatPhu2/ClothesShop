@@ -11,14 +11,12 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "comment",uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"idcustomer","idproduct"})
-})
+@Table(name = "comment")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false,columnDefinition = "nvarchar(100)")
     private String description;
 
     @ManyToOne @JoinColumn(name = "idproduct")

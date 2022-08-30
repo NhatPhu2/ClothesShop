@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
-public class OrderDetailDto implements Serializable {
+public class OrderDetailDTO implements Serializable {
     private final Integer id;
     private final int quantity;
     private final double amount;

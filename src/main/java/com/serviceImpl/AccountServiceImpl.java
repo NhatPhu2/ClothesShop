@@ -1,28 +1,28 @@
 package com.serviceImpl;
 
-import com.DTO.AccountDto;
+import com.DTO.AccountDTO;
 import com.service.AccountService;
 
 import java.util.List;
 
 public class AccountServiceImpl implements AccountService {
     @Override
-    public List<AccountDto> findAll() {
+    public List<AccountDTO> findAll() {
         return null;
     }
 
     @Override
-    public AccountDto findById(Integer id) {
+    public AccountDTO findById(Integer id) {
         return null;
     }
 
     @Override
-    public void create(AccountDto AccountDto) {
+    public void create(AccountDTO AccountDto) {
 
     }
 
     @Override
-    public void update(AccountDto AccountDto) {
+    public void update(AccountDTO AccountDto) {
 
     }
 

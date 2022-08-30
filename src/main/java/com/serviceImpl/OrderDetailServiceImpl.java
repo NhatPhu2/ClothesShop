@@ -1,28 +1,28 @@
 package com.serviceImpl;
 
-import com.DTO.OrderDetailDto;
+import com.DTO.OrderDetailDTO;
 import com.service.OrderDetailService;
 
 import java.util.List;
 
 public class OrderDetailServiceImpl implements OrderDetailService {
     @Override
-    public List<OrderDetailDto> findAll() {
+    public List<OrderDetailDTO> findAll() {
         return null;
     }
 
     @Override
-    public OrderDetailDto findById(Integer id) {
+    public OrderDetailDTO findById(Integer id) {
         return null;
     }
 
     @Override
-    public void create(OrderDetailDto OrderDetailDto) {
+    public void create(OrderDetailDTO OrderDetailDto) {
 
     }
 
     @Override
-    public void update(OrderDetailDto OrderDetailDto) {
+    public void update(OrderDetailDTO OrderDetailDto) {
 
     }
 

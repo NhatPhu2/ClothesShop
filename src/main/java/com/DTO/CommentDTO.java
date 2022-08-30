@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
-public class CommentDto implements Serializable {
+public class CommentDTO implements Serializable {
     private final Integer id;
     private final String description;
     private final Comment commentProduct;

@@ -1,28 +1,28 @@
 package com.serviceImpl;
 
-import com.DTO.EmployeeDto;
+import com.DTO.EmployeeDTO;
 import com.service.EmployeeService;
 
 import java.util.List;
 
 public class EmployeeServiceImpl implements EmployeeService {
     @Override
-    public List<EmployeeDto> findAll() {
+    public List<EmployeeDTO> findAll() {
         return null;
     }
 
     @Override
-    public EmployeeDto findById(Integer id) {
+    public EmployeeDTO findById(Integer id) {
         return null;
     }
 
     @Override
-    public void create(EmployeeDto EmployeeDto) {
+    public void create(EmployeeDTO EmployeeDto) {
 
     }
 
     @Override
-    public void update(EmployeeDto EmployeeDto) {
+    public void update(EmployeeDTO EmployeeDto) {
 
     }
 

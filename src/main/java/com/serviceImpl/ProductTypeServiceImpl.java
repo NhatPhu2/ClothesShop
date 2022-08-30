@@ -1,28 +1,28 @@
 package com.serviceImpl;
 
-import com.DTO.ProductTypeDto;
+import com.DTO.ProductTypeDTO;
 import com.service.ProductTypeService;
 
 import java.util.List;
 
 public class ProductTypeServiceImpl implements ProductTypeService {
     @Override
-    public List<ProductTypeDto> findAll() {
+    public List<ProductTypeDTO> findAll() {
         return null;
     }
 
     @Override
-    public ProductTypeDto findById(Integer id) {
+    public ProductTypeDTO findById(Integer id) {
         return null;
     }
 
     @Override
-    public void create(ProductTypeDto ProductTypeDto) {
+    public void create(ProductTypeDTO ProductTypeDto) {
 
     }
 
     @Override
-    public void update(ProductTypeDto ProductTypeDto) {
+    public void update(ProductTypeDTO ProductTypeDto) {
 
     }
 

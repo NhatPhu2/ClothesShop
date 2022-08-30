@@ -1,13 +1,13 @@
 package com.service;
 
-import com.DTO.CommentDto;
+import com.DTO.CommentDTO;
 
 import java.util.List;
 
 public interface CommentService {
-    List<CommentDto> findAll();
-    CommentDto findById(Integer id);
-    void create(CommentDto CommentDto);
-    void update(CommentDto CommentDto);
+    List<CommentDTO> findAll();
+    CommentDTO findById(Integer id);
+    void create(CommentDTO CommentDto);
+    void update(CommentDTO CommentDto);
     void remove(Integer id);
 }

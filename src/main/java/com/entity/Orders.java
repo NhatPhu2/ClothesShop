@@ -12,16 +12,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "orders",uniqueConstraints = {
-        @UniqueConstraint(columnNames = "idcustomer")
-})
+@Table(name = "orders")
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
     private Date createDate;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false,columnDefinition = "nvarchar(100)")
     private String address;
 
     @ManyToOne @JoinColumn( name = "idcustomer")

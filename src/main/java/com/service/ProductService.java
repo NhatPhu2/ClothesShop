@@ -1,13 +1,13 @@
 package com.service;
 
-import com.DTO.ProductDto;
+import com.DTO.ProductDTO;
 
 import java.util.List;
 
 public interface ProductService {
-    List<ProductDto> findAll();
-    ProductDto findById(Integer id);
-    ProductDto create(ProductDto ProductDto);
-    ProductDto update(ProductDto ProductDto);
+    List<ProductDTO> findAll();
+    ProductDTO findById(Integer id);
+    ProductDTO create(ProductDTO ProductDto);
+    ProductDTO update(ProductDTO ProductDto);
     void remove(List<Integer> id);
 }

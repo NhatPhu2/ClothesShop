@@ -1,28 +1,28 @@
 package com.serviceImpl;
 
-import com.DTO.SizeDto;
+import com.DTO.SizeDTO;
 import com.service.SizeService;
 
 import java.util.List;
 
 public class SizeServiceImpl implements SizeService {
     @Override
-    public List<SizeDto> findAll() {
+    public List<SizeDTO> findAll() {
         return null;
     }
 
     @Override
-    public SizeDto findById(Integer id) {
+    public SizeDTO findById(Integer id) {
         return null;
     }
 
     @Override
-    public void create(SizeDto SizeDto) {
+    public void create(SizeDTO SizeDto) {
 
     }
 
     @Override
-    public void update(SizeDto SizeDto) {
+    public void update(SizeDTO SizeDto) {
 
     }
 

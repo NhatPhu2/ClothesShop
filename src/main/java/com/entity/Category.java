@@ -16,7 +16,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false,columnDefinition = "nvarchar(50)")
     private String name;
 
     @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)

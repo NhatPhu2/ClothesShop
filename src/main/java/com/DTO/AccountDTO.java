@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
-public class AccountDto implements Serializable {
+public class AccountDTO implements Serializable {
     private final String username;
     private final String password;
     private final Customer customer;

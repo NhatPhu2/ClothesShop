@@ -1,13 +1,13 @@
 package com.service;
 
-import com.DTO.AccountDto;
+import com.DTO.AccountDTO;
 
 import java.util.List;
 
 public interface AccountService {
-    List<AccountDto> findAll();
-    AccountDto findById(Integer id);
-    void create(AccountDto AccountDto);
-    void update(AccountDto AccountDto);
+    List<AccountDTO> findAll();
+    AccountDTO findById(Integer id);
+    void create(AccountDTO AccountDto);
+    void update(AccountDTO AccountDto);
     void remove(Integer id);
 }

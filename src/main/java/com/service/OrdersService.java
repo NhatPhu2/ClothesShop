@@ -1,13 +1,13 @@
 package com.service;
 
-import com.DTO.OrdersDto;
+import com.DTO.OrdersDTO;
 
 import java.util.List;
 
 public interface OrdersService {
-    List<OrdersDto> findAll();
-    OrdersDto findById(Integer id);
-    void create(OrdersDto OrdersDto);
-    void update(OrdersDto OrdersDto);
+    List<OrdersDTO> findAll();
+    OrdersDTO findById(Integer id);
+    void create(OrdersDTO OrdersDto);
+    void update(OrdersDTO OrdersDto);
     void remove(Integer id);
 }

@@ -10,9 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "orderdetail",uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"idorder","idproduct"})
-})
+@Table(name = "orderdetail")
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

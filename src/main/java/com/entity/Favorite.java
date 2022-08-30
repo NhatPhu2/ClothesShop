@@ -11,9 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "favorite",uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"idcustomer","idproduct"})
-})
+@Table(name = "favorite")
 public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

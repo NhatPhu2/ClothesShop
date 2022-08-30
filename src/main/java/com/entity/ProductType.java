@@ -11,14 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "producttype",uniqueConstraints = {
-        @UniqueConstraint(columnNames = "idcategory")
-})
+@Table(name = "producttype")
 public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false,columnDefinition = "nvarchar(50)")
     private String name;
 
     @OneToMany(mappedBy = "productType",fetch = FetchType.LAZY)

@@ -1,28 +1,28 @@
 package com.serviceImpl;
 
-import com.DTO.CommentDto;
+import com.DTO.CommentDTO;
 import com.service.CommentService;
 
 import java.util.List;
 
 public class CommentServiceImpl implements CommentService {
     @Override
-    public List<CommentDto> findAll() {
+    public List<CommentDTO> findAll() {
         return null;
     }
 
     @Override
-    public CommentDto findById(Integer id) {
+    public CommentDTO findById(Integer id) {
         return null;
     }
 
     @Override
-    public void create(CommentDto CommentDto) {
+    public void create(CommentDTO CommentDto) {
 
     }
 
     @Override
-    public void update(CommentDto CommentDto) {
+    public void update(CommentDTO CommentDto) {
 
     }
 

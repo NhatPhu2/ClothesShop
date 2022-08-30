@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
-public class ProductTypeDto implements Serializable {
+public class SizeDTO implements Serializable {
     private final Integer id;
     private final String name;
 }

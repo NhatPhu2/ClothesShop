@@ -1,13 +1,13 @@
 package com.service;
 
-import com.DTO.EmployeeDto;
+import com.DTO.EmployeeDTO;
 
 import java.util.List;
 
 public interface EmployeeService {
-    List<EmployeeDto> findAll();
-    EmployeeDto findById(Integer id);
-    void create(EmployeeDto EmployeeDto);
-    void update(EmployeeDto EmployeeDto);
+    List<EmployeeDTO> findAll();
+    EmployeeDTO findById(Integer id);
+    void create(EmployeeDTO EmployeeDto);
+    void update(EmployeeDTO EmployeeDto);
     void remove(Integer id);
 }

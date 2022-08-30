@@ -1,13 +1,13 @@
 package com.service;
 
-import com.DTO.ColorDto;
+import com.DTO.ColorDTO;
 
 import java.util.List;
 
 public interface ColorService {
-    List<ColorDto> findAll();
-    ColorDto findById(Integer id);
-    void create(ColorDto ColorDto);
-    void update(ColorDto ColorDto);
+    List<ColorDTO> findAll();
+    ColorDTO findById(Integer id);
+    void create(ColorDTO ColorDto);
+    void update(ColorDTO ColorDto);
     void remove(Integer id);
 }

@@ -1,28 +1,28 @@
 package com.serviceImpl;
 
-import com.DTO.ColorDto;
+import com.DTO.ColorDTO;
 import com.service.ColorService;
 
 import java.util.List;
 
 public class ColorServiceImpl implements ColorService {
     @Override
-    public List<ColorDto> findAll() {
+    public List<ColorDTO> findAll() {
         return null;
     }
 
     @Override
-    public ColorDto findById(Integer id) {
+    public ColorDTO findById(Integer id) {
         return null;
     }
 
     @Override
-    public void create(ColorDto ColorDto) {
+    public void create(ColorDTO ColorDto) {
 
     }
 
     @Override
-    public void update(ColorDto ColorDto) {
+    public void update(ColorDTO ColorDto) {
 
     }
 

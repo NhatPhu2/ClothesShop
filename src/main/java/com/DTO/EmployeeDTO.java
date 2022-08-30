@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
-public class EmployeeDto implements Serializable {
+public class EmployeeDTO implements Serializable {
     private final Integer id;
     private final String fullname;
     private final String email;

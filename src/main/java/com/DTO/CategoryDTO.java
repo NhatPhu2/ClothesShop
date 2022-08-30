@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
-public class ColorDto implements Serializable {
+public class CategoryDTO implements Serializable {
     private final Integer id;
     private final String name;
 }

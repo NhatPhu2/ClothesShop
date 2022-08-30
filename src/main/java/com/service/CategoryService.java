@@ -1,13 +1,13 @@
 package com.service;
 
-import com.DTO.CategoryDto;
+import com.DTO.CategoryDTO;
 
 import java.util.List;
 
 public interface CategoryService {
-    List<CategoryDto> findAll();
-    CategoryDto findById(Integer id);
-    void create(CategoryDto CategoryDto);
-    void update(CategoryDto CategoryDto);
+    List<CategoryDTO> findAll();
+    CategoryDTO findById(Integer id);
+    void create(CategoryDTO CategoryDto);
+    void update(CategoryDTO CategoryDto);
     void remove(Integer id);
 }

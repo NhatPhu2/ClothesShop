@@ -1,28 +1,28 @@
 package com.serviceImpl;
 
-import com.DTO.FavoriteDto;
+import com.DTO.FavoriteDTO;
 import com.service.FavoriteService;
 
 import java.util.List;
 
 public class FavoriteServiceImpl implements FavoriteService {
     @Override
-    public List<FavoriteDto> findAll() {
+    public List<FavoriteDTO> findAll() {
         return null;
     }
 
     @Override
-    public FavoriteDto findById(Integer id) {
+    public FavoriteDTO findById(Integer id) {
         return null;
     }
 
     @Override
-    public void create(FavoriteDto FavoriteDto) {
+    public void create(FavoriteDTO FavoriteDto) {
 
     }
 
     @Override
-    public void update(FavoriteDto FavoriteDto) {
+    public void update(FavoriteDTO FavoriteDto) {
 
     }
 

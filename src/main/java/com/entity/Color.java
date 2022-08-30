@@ -16,7 +16,7 @@ public class Color {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false,columnDefinition = "nvarchar(20)")
     private String name;
 
     @OneToMany(mappedBy = "color",fetch = FetchType.LAZY)

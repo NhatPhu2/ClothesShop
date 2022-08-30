@@ -1,13 +1,13 @@
 package com.service;
 
-import com.DTO.SizeDto;
+import com.DTO.SizeDTO;
 
 import java.util.List;
 
 public interface SizeService {
-    List<SizeDto> findAll();
-    SizeDto findById(Integer id);
-    void create(SizeDto SizeDto);
-    void update(SizeDto SizeDto);
+    List<SizeDTO> findAll();
+    SizeDTO findById(Integer id);
+    void create(SizeDTO SizeDto);
+    void update(SizeDTO SizeDto);
     void remove(Integer id);
 }

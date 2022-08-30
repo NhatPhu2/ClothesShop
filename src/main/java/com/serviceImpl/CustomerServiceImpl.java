@@ -1,28 +1,28 @@
 package com.serviceImpl;
 
-import com.DTO.CustomerDto;
+import com.DTO.CustomerDTO;
 import com.service.CustomerService;
 
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
     @Override
-    public List<CustomerDto> findAll() {
+    public List<CustomerDTO> findAll() {
         return null;
     }
 
     @Override
-    public CustomerDto findById(Integer id) {
+    public CustomerDTO findById(Integer id) {
         return null;
     }
 
     @Override
-    public void create(CustomerDto CustomerDto) {
+    public void create(CustomerDTO CustomerDto) {
 
     }
 
     @Override
-    public void update(CustomerDto CustomerDto) {
+    public void update(CustomerDTO CustomerDto) {
 
     }
 

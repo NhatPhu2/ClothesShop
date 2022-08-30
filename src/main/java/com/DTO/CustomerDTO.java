@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @Getter
-public class CustomerDto implements Serializable {
+public class CustomerDTO implements Serializable {
     private final Integer id;
     private final String fullname;
     private final String email;

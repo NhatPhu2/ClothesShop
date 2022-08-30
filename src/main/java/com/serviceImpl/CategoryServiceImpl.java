@@ -1,28 +1,28 @@
 package com.serviceImpl;
 
-import com.DTO.CategoryDto;
+import com.DTO.CategoryDTO;
 import com.service.CategoryService;
 
 import java.util.List;
 
 public class CategoryServiceImpl implements CategoryService {
     @Override
-    public List<CategoryDto> findAll() {
+    public List<CategoryDTO> findAll() {
         return null;
     }
 
     @Override
-    public CategoryDto findById(Integer id) {
+    public CategoryDTO findById(Integer id) {
         return null;
     }
 
     @Override
-    public void create(CategoryDto CategoryDto) {
+    public void create(CategoryDTO CategoryDto) {
 
     }
 
     @Override
-    public void update(CategoryDto CategoryDto) {
+    public void update(CategoryDTO CategoryDto) {
 
     }
 
