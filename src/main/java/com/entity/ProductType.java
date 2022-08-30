@@ -11,7 +11,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "producttype")
+@Table(name = "producttype",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "idcategory")
+})
 public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +23,7 @@ public class ProductType {
 
     @OneToMany(mappedBy = "productType",fetch = FetchType.LAZY)
     private List<Product> products;
+
+    @ManyToOne @JoinColumn(name = "idcategory")
+    Category categoryType;
 }
