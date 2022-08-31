@@ -1,16 +1,18 @@
 package com.DTO;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@Getter
+@Data
+@NoArgsConstructor
 public class CustomerDTO implements Serializable {
-    private final Integer id;
-    private final String fullname;
-    private final String email;
-    private final String photo;
-    private final String phoneNumber;
+    private Integer id;
+    private String fullname;
+    private String email;
+    private String photo;
+    private String phoneNumber;
 }

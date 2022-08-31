@@ -1,13 +1,16 @@
 package com.DTO;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@Getter
+
+@Data
+@NoArgsConstructor
 public class CategoryDTO implements Serializable {
-    private final Integer id;
-    private final String name;
+    private Integer id;
+    private String name;
 }

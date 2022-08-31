@@ -3,16 +3,18 @@ package com.DTO;
 import com.entity.Orders;
 import com.entity.Product;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@Getter
+@Data
+@NoArgsConstructor
 public class OrderDetailDTO implements Serializable {
-    private final Integer id;
-    private final int quantity;
-    private final double amount;
-    private final Product orderDetailProduct;
-    private final Orders order;
+    private Integer id;
+    private int quantity;
+    private double amount;
+    private Product orderDetailProduct;
+    private Orders order;
 }

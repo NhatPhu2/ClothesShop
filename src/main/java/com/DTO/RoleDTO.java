@@ -1,13 +1,15 @@
 package com.DTO;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@Getter
+@Data
+@NoArgsConstructor
 public class RoleDTO implements Serializable {
-    private final String id;
-    private final String name;
+    private String id;
+    private String name;
 }
