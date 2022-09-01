@@ -8,6 +8,6 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 public class ColorDTO implements Serializable {
-    private Integer idCategory;
-    private String name;
+    private Integer idColor;
+    private String nameColor;
 }

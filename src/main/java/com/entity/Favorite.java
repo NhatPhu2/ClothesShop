@@ -15,7 +15,7 @@ import java.util.Date;
 public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idFavorite;
     @Column(nullable = false)
     private Date likeDate;
 

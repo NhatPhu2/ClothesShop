@@ -16,9 +16,9 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idProduct;
     @Column(nullable = false,columnDefinition = "nvarchar(200)")
-    private String name;
+    private String nameProduct;
     @Column(nullable = false)
     private double price;
     @Column(nullable = false,columnDefinition = "nvarchar(200)")

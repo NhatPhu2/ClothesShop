@@ -13,9 +13,9 @@ import javax.persistence.*;
 @Table(name = "role")
 public class Role {
     @Id @Column(length = 100)
-    private String id;
+    private String idRole;
     @Column(nullable = false,columnDefinition = "nvarchar(50)")
-    private String name;
+    private String nameRole;
 
     @OneToOne(mappedBy = "role")
     Account account;
