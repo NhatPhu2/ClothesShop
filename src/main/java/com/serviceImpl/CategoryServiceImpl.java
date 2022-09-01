@@ -1,33 +1,53 @@
 package com.serviceImpl;
 
+import com.DAO.CategoryDAO;
 import com.DTO.CategoryDTO;
+import com.entity.Category;
 import com.service.CategoryService;
+import com.utils.Convert;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CategoryServiceImpl implements CategoryService {
-    @Override
+    @Autowired
+    CategoryDAO categoryDAO;
+    @Autowired
+    Convert convert;
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public List<CategoryDTO> findAll() {
-        return null;
+        List<Category> listProduct = categoryDAO.findAll();
+        List<CategoryDTO> listCategoryDTO = categoryDAO.findAll().stream().
+                map(Category -> convert.toDto(Category,CategoryDTO.class))
+                .collect(Collectors.toList());
+        return listCategoryDTO;
     }
 
-    @Override
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public CategoryDTO findById(Integer id) {
-        return null;
+        Category category = categoryDAO.findById(id).get();
+        CategoryDTO categoryDTO = convert.toDto(category, CategoryDTO.class);
+        return categoryDTO;
     }
 
-    @Override
-    public void create(CategoryDTO CategoryDto) {
-
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
+    public CategoryDTO create(CategoryDTO CategoryDto) {
+        Category newCategory = convert.toEntity(CategoryDto, Category.class);
+        CategoryDTO categoryDTO = convert.toDto(newCategory, CategoryDTO.class);
+        return categoryDTO;
     }
 
-    @Override
-    public void update(CategoryDTO CategoryDto) {
-
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
+    public CategoryDTO update(CategoryDTO CategoryDto) {
+        Category newCategory = convert.toEntity(CategoryDto, Category.class);
+        CategoryDTO categoryDTO = convert.toDto(newCategory, CategoryDTO.class);
+        return categoryDTO;
     }
 
-    @Override
-    public void remove(Integer id) {
-
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
+    public void remove(List<Integer> id) {
+        categoryDAO.deleteAllById(id);
     }
 }
