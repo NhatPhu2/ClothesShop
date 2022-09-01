@@ -29,7 +29,7 @@ public class ShoppingCart {
         }
         else
             cart.setQuantity(1);
-        carts.put(cart.getId(),cart);
+        carts.put(cart.getIdProduct(),cart);
         return  carts;
     }
 

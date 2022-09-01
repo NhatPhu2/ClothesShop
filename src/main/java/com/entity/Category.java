@@ -15,9 +15,9 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idCategory;
     @Column(nullable = false,columnDefinition = "nvarchar(50)")
-    private String name;
+    private String nameCategory;
 
     @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
     private List<Product> products;

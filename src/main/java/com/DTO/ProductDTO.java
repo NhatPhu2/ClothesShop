@@ -17,7 +17,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class ProductDTO implements Serializable {
-    private Integer id;
+    private Integer idProduct;
     private String name;
     private double price;
     private String description;
