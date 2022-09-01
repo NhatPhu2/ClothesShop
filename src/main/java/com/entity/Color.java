@@ -15,9 +15,9 @@ import java.util.List;
 public class Color {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idColor;
     @Column(nullable = false,columnDefinition = "nvarchar(20)")
-    private String name;
+    private String nameColor;
 
     @OneToMany(mappedBy = "color",fetch = FetchType.LAZY)
     private List<Product> products;
