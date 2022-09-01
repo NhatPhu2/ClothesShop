@@ -4,16 +4,19 @@ import com.entity.Customer;
 import com.entity.Employee;
 import com.entity.Role;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@Getter
+
+@Data
+@NoArgsConstructor
 public class AccountDTO implements Serializable {
-    private final String username;
-    private final String password;
-    private final Customer customer;
-    private final Employee employee;
-    private final Role role;
+    private String username;
+    private String password;
+    private Customer customer;
+    private Employee employee;
+    private Role role;
 }

@@ -1,13 +1,13 @@
 package com.DTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@Getter
+@Data
+@NoArgsConstructor
 public class ColorDTO implements Serializable {
-    private final Integer id;
-    private final String name;
+    private Integer idColor;
+    private String nameColor;
 }

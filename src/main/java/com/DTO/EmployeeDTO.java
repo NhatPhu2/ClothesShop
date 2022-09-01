@@ -1,16 +1,16 @@
 package com.DTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@Getter
+@Data
+@NoArgsConstructor
 public class EmployeeDTO implements Serializable {
-    private final Integer id;
-    private final String fullname;
-    private final String email;
-    private final String photo;
-    private final String phoneNumber;
+    private Integer idEmployee;
+    private String fullname;
+    private String email;
+    private String photo;
+    private String phoneNumber;
 }

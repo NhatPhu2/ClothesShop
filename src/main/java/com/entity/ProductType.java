@@ -15,9 +15,9 @@ import java.util.List;
 public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idProductType;
     @Column(nullable = false,columnDefinition = "nvarchar(50)")
-    private String name;
+    private String nameProductType;
 
     @OneToMany(mappedBy = "productType",fetch = FetchType.LAZY)
     private List<Product> products;

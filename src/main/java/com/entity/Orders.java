@@ -16,7 +16,7 @@ import java.util.List;
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idOrder;
     @Column(nullable = false)
     private Date createDate;
     @Column(nullable = false,columnDefinition = "nvarchar(100)")

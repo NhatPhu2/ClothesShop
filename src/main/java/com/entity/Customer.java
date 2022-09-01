@@ -15,7 +15,7 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idCustomer;
     @Column(nullable = false,columnDefinition = "nvarchar(60)")
     private String fullname;
     @Column(nullable = false, length = 50)

@@ -1,16 +1,16 @@
 package com.DTO;
 
 import com.entity.Comment;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@AllArgsConstructor
-@Getter
+@Data
+@NoArgsConstructor
 public class CommentDTO implements Serializable {
-    private final Integer id;
-    private final String description;
-    private final Comment commentProduct;
-    private final Comment commentCustomer;
+    private Integer idComment;
+    private String description;
+    private Comment commentProduct;
+    private Comment commentCustomer;
 }

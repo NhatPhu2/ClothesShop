@@ -14,9 +14,9 @@ import java.util.List;
 @Table(name = "size")
 public class Size {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idSize;
     @Column(nullable = false, length = 20)
-    private String name;
+    private String nameSize;
 
     @OneToMany(mappedBy = "size",fetch = FetchType.LAZY)
     private List<Product> products;
