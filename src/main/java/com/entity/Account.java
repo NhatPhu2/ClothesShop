@@ -17,12 +17,12 @@ public class Account {
     @Column(nullable = false,length = 100)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name ="idcustomer", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name ="idcustomer")
     Customer customer;
 
-    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = "idemployee", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = "idemployee")
     Employee employee;
 
-    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = "idrole", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = "idrole")
     Role role;
 }
