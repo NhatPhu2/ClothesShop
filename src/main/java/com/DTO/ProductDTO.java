@@ -1,10 +1,5 @@
 package com.DTO;
 
-import com.entity.Category;
-import com.entity.Color;
-import com.entity.ProductType;
-import com.entity.Size;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,8 +18,14 @@ public class ProductDTO implements Serializable {
     private String photo;
     private int quantity;
     private Date createDate;
-    private Size size;
-    private Color color;
-    private Category category;
-    private ProductType productType;
+    private Integer idSize;
+    private String nameSize;
+    private Integer idCategory;
+    private String nameCategory;
+    private Integer idProductType;
+    private String nameProductType;
+
+//    private Color color;
+//    private Category category;
+//    private ProductType productType;
 }
