@@ -19,6 +19,6 @@ public class Size {
     @Column(nullable = false, length = 20)
     private String nameSize;
 
-    @OneToMany(mappedBy = "size",fetch = FetchType.LAZY)
-    private List<Product> products;
+    @OneToMany(mappedBy = "size")
+    List<ProductSizes> productSizes;
 }

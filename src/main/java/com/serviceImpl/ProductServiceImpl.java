@@ -26,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductDTO> listProductDTO = listProduct.stream().
                 map(product -> convert.toDto(product, ProductDTO.class))
                 .collect(Collectors.toList());
+        System.out.println(listProduct.get(3).getProductColors().size());
         return listProductDTO;
 
     }

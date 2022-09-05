@@ -23,18 +23,14 @@ public class Product {
     private double price;
     @Column(nullable = false,columnDefinition = "nvarchar(200)")
     private String description;
-    @Column(nullable = false, length = 70)
-    private String photo;
-    @Column(nullable = false)
-    private int quantity;
     @Column(nullable = false)
     private Date createDate;
 
-    @ManyToOne @JoinColumn(name = "idsize")
-    private Size size;
+    @OneToMany(mappedBy = "size",fetch = FetchType.LAZY)
+    List<ProductSizes> productSizes;
 
-    @ManyToOne @JoinColumn(name = "idcolor")
-    private Color color;
+    @OneToMany(mappedBy = "color",fetch = FetchType.LAZY)
+    List<ProductColors> productColors;
 
     @ManyToOne @JoinColumn(name = "idcategory")
     private Category category;
