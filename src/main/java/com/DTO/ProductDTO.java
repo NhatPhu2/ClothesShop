@@ -1,6 +1,5 @@
 package com.DTO;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,4 +18,5 @@ public class ProductDTO implements Serializable {
     private String description;
     private Date createDate;
     private String nameCategory;
+
 }

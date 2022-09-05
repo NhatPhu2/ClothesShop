@@ -1,5 +1,6 @@
 package com.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,6 @@ public class ProductType {
     private Integer idProductType;
     @Column(nullable = false,columnDefinition = "nvarchar(50)")
     private String nameProductType;
-
     @OneToMany(mappedBy = "productType",fetch = FetchType.LAZY)
     private List<Product> products;
 
