@@ -19,6 +19,6 @@ public class Color {
     @Column(nullable = false,columnDefinition = "nvarchar(20)")
     private String nameColor;
 
-    @OneToMany(mappedBy = "color",fetch = FetchType.LAZY)
-    private List<Product> products;
+    @OneToMany(mappedBy = "color")
+    List<ProductColors> productColors;
 }
