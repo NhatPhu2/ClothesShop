@@ -18,7 +18,7 @@ public class ProductColors {
     @Column(nullable = false,length = 70)
     private String photo;
     @ManyToOne @JoinColumn(name = "idproduct")
-    private Product proColor;
+    private Product product;
     @ManyToOne @JoinColumn(name = "idcolor")
-    private Color color;
+    private Color colorProduct;
 }

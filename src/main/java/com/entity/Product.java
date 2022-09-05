@@ -26,10 +26,10 @@ public class Product {
     @Column(nullable = false)
     private Date createDate;
 
-    @OneToMany(mappedBy = "size",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "proSize",fetch = FetchType.LAZY)
     List<ProductSizes> productSizes;
 
-    @OneToMany(mappedBy = "color",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     List<ProductColors> productColors;
 
     @ManyToOne @JoinColumn(name = "idcategory")
