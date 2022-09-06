@@ -1,6 +1,5 @@
 package com.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +18,6 @@ public class Size {
     @Column(nullable = false, length = 20)
     private String nameSize;
 
-    @OneToMany(mappedBy = "size")
-    List<ProductSizes> productSizes;
+    @OneToMany(mappedBy = "sizeProduct",fetch = FetchType.LAZY)
+    List<ProductSizes> productSizess;
 }

@@ -13,8 +13,10 @@ import java.util.List;
 @NoArgsConstructor
 public class ProductDTO implements Serializable {
     private Integer idProduct;
-    private String name;
+    private String nameProduct;
     private double price;
     private String description;
     private Date createDate;
+    private String nameCategory;
+
 }

@@ -1,11 +1,8 @@
 package com.controller;
 
-import com.DTO.ProductColorsDTO;
+
 import com.DTO.ProductDTO;
-import com.entity.Product;
-import com.service.ProductColorsService;
 import com.service.ProductService;
-import com.serviceImpl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +12,11 @@ import java.util.List;
 //@RequestMapping("/controller")
 public class ProductController {
     @Autowired
-    ProductColorsService productColorsService;
+    ProductService productService;
 
     @GetMapping("/products/all")
-    public List<ProductColorsDTO> getAllProducts() {
-        return productColorsService.findAll();
+    public List<ProductDTO> getAllProducts() {
+        return productService.findAll();
     }
 
 //    @GetMapping("/products/{id}")

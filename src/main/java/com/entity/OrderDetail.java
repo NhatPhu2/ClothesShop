@@ -20,10 +20,10 @@ public class OrderDetail {
     @Column(nullable = false)
     private double amount;
     @ManyToOne @JoinColumn(name = "idproduct")
-    private Product orderDetailProduct;
+    private Product product;
 
     @ManyToOne @JoinColumn(name = "idorder")
-    private Orders order;
+    private Orders orderInOrderDetail;
 
 
 }

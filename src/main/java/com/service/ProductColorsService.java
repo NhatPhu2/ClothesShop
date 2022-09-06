@@ -7,6 +7,9 @@ import java.util.List;
 public interface ProductColorsService {
     List<ProductColorsDTO> findAll();
     ProductColorsDTO findById(Integer id);
+
+    ProductColorsDTO findByIdColorAndIdProduct(Integer idColor, Integer idProduct);
+
     void create(ProductColorsDTO ProductColorsDto);
     void update(ProductColorsDTO ProductColorsDto);
     void remove(Integer id);

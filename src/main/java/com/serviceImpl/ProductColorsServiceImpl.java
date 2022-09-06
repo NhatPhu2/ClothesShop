@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Service
-public class ProductColorsImpl implements ProductColorsService {
+public class ProductColorsServiceImpl implements ProductColorsService {
 
     @Autowired
     ProductColorsDAO productColorsDAO;
@@ -22,14 +23,21 @@ public class ProductColorsImpl implements ProductColorsService {
     public List<ProductColorsDTO> findAll() {
         List<ProductColors> productColor = productColorsDAO.findAll();
         List<ProductColorsDTO> productColorsDTOS = productColor.stream()
-                .map(product -> convert.toDto(productColor,ProductColorsDTO.class))
+                .map(product -> convert.toDto(productColor, ProductColorsDTO.class))
                 .collect(Collectors.toList());
-        return productColorsDTOS ;
+        return productColorsDTOS;
     }
 
     @Override
     public ProductColorsDTO findById(Integer id) {
         return null;
+    }
+
+    @Override
+    public ProductColorsDTO findByIdColorAndIdProduct(Integer idColor, Integer idProduct) {
+        ProductColors productColors = productColorsDAO.findByIdColorAndIdProduct(idColor,idProduct);
+        ProductColorsDTO productColorsDTO = convert.toDto(productColors, ProductColorsDTO.class);
+        return productColorsDTO;
     }
 
     @Override

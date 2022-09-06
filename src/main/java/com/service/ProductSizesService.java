@@ -10,4 +10,6 @@ public interface ProductSizesService {
     void create(ProductSizesDTO ProductSizesDto);
     void update(ProductSizesDTO ProductSizesDto);
     void remove(Integer id);
+
+    ProductSizesDTO findByIdProduct(Integer idProduct, Integer idSize);
 }

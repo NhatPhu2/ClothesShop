@@ -16,9 +16,9 @@ public class Color {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idColor;
-    @Column(nullable = false,columnDefinition = "nvarchar(20)")
+    @Column(nullable = false,columnDefinition = "nvarchar(30)")
     private String nameColor;
 
-    @OneToMany(mappedBy = "color")
+    @OneToMany(mappedBy = "colorProduct",fetch = FetchType.LAZY)
     List<ProductColors> productColors;
 }
