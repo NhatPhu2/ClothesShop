@@ -1,15 +1,17 @@
 package com.DTO;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 
-@Getter
+@Data
 @NoArgsConstructor
 public class ProductSizesDTO implements Serializable {
-    private Integer idProductSize;
+    private Integer idSize;
+    private String nameSize;
     private int quantity;
 }

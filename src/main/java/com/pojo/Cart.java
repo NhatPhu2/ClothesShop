@@ -8,8 +8,26 @@ public class Cart {
     private int quantity;
     private Integer idColor;
     private String nameColor;
+    private Integer idSize;
+    private String nameSize;
 
     public Cart() {
+    }
+
+    public Integer getIdSize() {
+        return idSize;
+    }
+
+    public void setIdSize(Integer idSize) {
+        this.idSize = idSize;
+    }
+
+    public String getNameSize() {
+        return nameSize;
+    }
+
+    public void setNameSize(String nameSize) {
+        this.nameSize = nameSize;
     }
 
     public Integer getIdProduct() {

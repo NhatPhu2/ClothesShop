@@ -13,6 +13,6 @@ public class OrderDetailDTO implements Serializable {
     private Integer idOderDetail;
     private int quantity;
     private double amount;
-    private Product orderDetailProduct;
-    private Orders order;
+    private Integer idProduct;
+    private Integer idOrder;
 }

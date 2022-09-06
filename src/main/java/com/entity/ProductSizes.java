@@ -17,9 +17,9 @@ public class ProductSizes {
     @Column(nullable = false)
     private int quantity;
     @ManyToOne @JoinColumn(name = "idsize")
-    private Size pSize;
+    private Size sizeProduct;
 
     @ManyToOne @JoinColumn(name = "idproduct")
-    private Product proSize;
+    private Product product;
 
 }

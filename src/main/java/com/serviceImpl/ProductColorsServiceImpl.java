@@ -37,8 +37,6 @@ public class ProductColorsServiceImpl implements ProductColorsService {
     public ProductColorsDTO findByIdColorAndIdProduct(Integer idColor, Integer idProduct) {
         ProductColors productColors = productColorsDAO.findByIdColorAndIdProduct(idColor,idProduct);
         ProductColorsDTO productColorsDTO = convert.toDto(productColors, ProductColorsDTO.class);
-        System.out.println(productColors.getColorProduct().getNameColor());
-        System.out.println(productColorsDTO.getNameColor());
         return productColorsDTO;
     }
 

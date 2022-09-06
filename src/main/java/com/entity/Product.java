@@ -26,7 +26,7 @@ public class Product {
     @Column(nullable = false)
     private Date createDate;
 
-    @OneToMany(mappedBy = "proSize",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     List<ProductSizes> productSizes;
 
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
@@ -44,6 +44,6 @@ public class Product {
     @OneToMany(mappedBy = "commentProduct",fetch = FetchType.LAZY)
     List<Comment> comments;
 
-    @OneToMany(mappedBy = "orderDetailProduct",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     List<OrderDetail> orderDetails;
 }
