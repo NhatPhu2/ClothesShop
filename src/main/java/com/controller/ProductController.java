@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 //@RequestMapping("/controller")
@@ -17,6 +18,11 @@ public class ProductController {
     @GetMapping("/products/all")
     public List<ProductDTO> getAllProducts() {
         return productService.findAll();
+    }
+    
+    @GetMapping("/products/all/{page}/{size}")
+    public List<ProductDTO> paging(@PathVariable("page") Optional<Integer> page, @PathVariable("size") Optional<Integer> size ) {
+        return productService.page(size.orElseThrow(() -> {throw new RuntimeException("page isn't error!");}),page.orElseThrow(() ->{throw new RuntimeException("page isn't error!");}));
     }
 
 //    @GetMapping("/products/{id}")
