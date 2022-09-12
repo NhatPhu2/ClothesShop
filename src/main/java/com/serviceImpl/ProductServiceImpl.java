@@ -6,6 +6,9 @@ import com.entity.Product;
 import com.service.ProductService;
 import com.utils.Convert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,4 +57,11 @@ public class ProductServiceImpl implements ProductService {
     public void remove(List<Integer> id) {
         productDAO.deleteAllById(id);
     }
+
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
+	public List<ProductDTO> page(int size, int page) {
+    	Pageable pageable = PageRequest.of(page, size);
+    	Page<Product> pages = productDAO.findAll(pageable);
+    	return pages.stream().map(t -> convert.toDto(t, ProductDTO.class)).collect(Collectors.toList());
+	}
 }
