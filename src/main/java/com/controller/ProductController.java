@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -19,6 +20,11 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>>  getAllProducts() {
 
         return ResponseEntity.ok(productService.findAll());
+    }
+    
+    @GetMapping("/products/all/{page}/{size}")
+    public List<ProductDTO> paging(@PathVariable("page") Optional<Integer> page, @PathVariable("size") Optional<Integer> size ) {
+        return productService.page(size.orElseThrow(() -> {throw new RuntimeException("page isn't error!");}),page.orElseThrow(() ->{throw new RuntimeException("page isn't error!");}));
     }
 
     @GetMapping("/product/bycategory/{idCategory}")

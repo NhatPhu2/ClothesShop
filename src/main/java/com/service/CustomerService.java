@@ -7,7 +7,7 @@ import java.util.List;
 public interface CustomerService {
     List<CustomerDTO> findAll();
     CustomerDTO findById(Integer id);
-    void create(CustomerDTO CustomerDto);
-    void update(CustomerDTO CustomerDto);
+    CustomerDTO create(CustomerDTO CustomerDto);
+    CustomerDTO update(CustomerDTO CustomerDto);
     void remove(Integer id);
 }

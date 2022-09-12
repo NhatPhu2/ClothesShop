@@ -11,4 +11,6 @@ public interface ProductService {
     ProductDTO update(ProductDTO ProductDto);
     void remove(List<Integer> id);
     List<ProductDTO> findAllByIdCategory(Integer idCategory);
+    List<ProductDTO> page(int size, int page);
+
 }
