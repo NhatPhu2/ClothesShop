@@ -14,9 +14,9 @@ import javax.persistence.*;
 public class ProductColors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProductColor;
+    private Integer idProductsColors;
     @Column(nullable = false,length = 70)
-    private String photo;
+    private String photoColor;
     @ManyToOne @JoinColumn(name = "idproduct")
     private Product product;
     @ManyToOne @JoinColumn(name = "idcolor")

@@ -13,4 +13,6 @@ public interface ProductColorsService {
     void create(ProductColorsDTO ProductColorsDto);
     void update(ProductColorsDTO ProductColorsDto);
     void remove(Integer id);
+
+    List<ProductColorsDTO> findByIdProduct(Integer idProduct);
 }

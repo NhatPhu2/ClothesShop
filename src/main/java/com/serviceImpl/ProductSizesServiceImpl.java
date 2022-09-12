@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProductSizesServiceImpl implements ProductSizesService {
 
@@ -44,9 +46,18 @@ public class ProductSizesServiceImpl implements ProductSizesService {
     }
 
     @Override
-    public ProductSizesDTO findByIdProduct(Integer idProduct,Integer idSize){
-        ProductSizes productSizes = productSizesDAO.findByIdProduct(idProduct,idSize);
+    public ProductSizesDTO findByIdProductAndIdSize(Integer idProduct, Integer idSize){
+        ProductSizes productSizes = productSizesDAO.findByIdProductAndIdSize(idProduct,idSize);
         ProductSizesDTO productSizesDTO = convert.toDto(productSizes,ProductSizesDTO.class);
         return productSizesDTO;
+    }
+
+    @Override
+    public List<ProductSizesDTO> findByIdProduct(Integer idProduct) {
+         List<ProductSizes> productSizes = productSizesDAO.findByIdProduct(idProduct);
+         List<ProductSizesDTO> productSizesDTOS = productSizes.stream()
+                 .map(productSize -> convert.toDto(productSize,ProductSizesDTO.class))
+                 .collect(Collectors.toList());
+        return productSizesDTOS;
     }
 }

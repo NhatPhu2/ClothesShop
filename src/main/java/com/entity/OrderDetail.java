@@ -19,6 +19,10 @@ public class OrderDetail {
     private int quantity;
     @Column(nullable = false)
     private double amount;
+    @Column(nullable = false,columnDefinition = "varchar(30)")
+    private String colorName;
+    @Column(nullable = false,columnDefinition = "varchar(30)")
+    private String sizeName;
     @ManyToOne @JoinColumn(name = "idproduct")
     private Product product;
 

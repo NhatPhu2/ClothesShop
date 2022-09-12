@@ -22,6 +22,6 @@ public class Category {
     @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
     private List<Product> products;
     @OneToMany(mappedBy = "categoryType",fetch = FetchType.LAZY)
-    private List<ProductType> productTypes;
+    private List<ProductStyle> productStyles;
 
 }

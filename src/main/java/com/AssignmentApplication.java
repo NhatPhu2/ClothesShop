@@ -12,7 +12,7 @@ public class AssignmentApplication {
 	public ModelMapper modelMapper(){
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration()
-				.setMatchingStrategy(MatchingStrategies.LOOSE);
+				.setMatchingStrategy(MatchingStrategies.STANDARD);
 		return modelMapper;
 	}
 	public static void main(String[] args) {

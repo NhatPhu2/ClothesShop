@@ -11,11 +11,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 public class ProductColorsDTO implements Serializable {
-    private Integer idProduct;
-    private String nameProduct;
-    private double price;
-    private String photo;
-    private int quantity;
     private Integer idColor;
     private String nameColor;
+    private String photoColor;
 }

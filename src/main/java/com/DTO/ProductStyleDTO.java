@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-public class ProductTypeDTO implements Serializable {
-    private Integer idProductType;
-    private String nameProductType;
+public class ProductStyleDTO implements Serializable {
+    private Integer idProductStyle;
+    private String nameProductStyle;
 }

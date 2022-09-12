@@ -54,4 +54,13 @@ public class ProductServiceImpl implements ProductService {
     public void remove(List<Integer> id) {
         productDAO.deleteAllById(id);
     }
+
+    @Override
+    public List<ProductDTO> findAllByIdCategory(Integer idCategory) {
+        List<Product> products = productDAO.findAllByIdCategory(idCategory);
+        List<ProductDTO> productDTOS = products.stream()
+                .map(product -> convert.toDto(product,ProductDTO.class))
+                .collect(Collectors.toList());
+        return productDTOS;
+    }
 }

@@ -11,5 +11,6 @@ public interface ProductSizesService {
     void update(ProductSizesDTO ProductSizesDto);
     void remove(Integer id);
 
-    ProductSizesDTO findByIdProduct(Integer idProduct, Integer idSize);
+    ProductSizesDTO findByIdProductAndIdSize(Integer idProduct, Integer idSize);
+    List<ProductSizesDTO> findByIdProduct(Integer idProduct);
 }

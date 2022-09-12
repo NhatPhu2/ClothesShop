@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "productsizes")
 public class ProductSizes {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProductSize;
+    private Integer idProductSizes;
     @Column(nullable = false)
     private int quantity;
     @ManyToOne @JoinColumn(name = "idsize")

@@ -25,6 +25,8 @@ public class Product {
     private String description;
     @Column(nullable = false)
     private Date createDate;
+    @Column(nullable = false,columnDefinition = "varchar(50)")
+    private String productPhoto;
 
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     List<ProductSizes> productSizes;
@@ -36,7 +38,7 @@ public class Product {
     private Category category;
 
     @ManyToOne @JoinColumn(name = "idproducttype")
-    private ProductType productType;
+    private ProductStyle productStyle;
 
     @OneToMany(mappedBy = "favoriteProduct",fetch = FetchType.LAZY)
     List<Favorite> favorites;

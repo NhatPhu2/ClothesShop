@@ -5,6 +5,7 @@ import com.entity.Product;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 
 @Data
@@ -13,6 +14,8 @@ public class OrderDetailDTO implements Serializable {
     private Integer idOderDetail;
     private int quantity;
     private double amount;
+    private String colorName;
+    private String sizeName;
     private Integer idProduct;
     private Integer idOrder;
 }

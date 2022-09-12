@@ -5,12 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
 public class CommentDTO implements Serializable {
     private Integer idComment;
     private String description;
-    private Comment commentProduct;
-    private Comment commentCustomer;
+    private Date commentDate;
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +18,8 @@ public class Comment {
     private Integer idComment;
     @Column(nullable = false,columnDefinition = "nvarchar(100)")
     private String description;
+    @Column(nullable = false)
+    private Date commentDate;
 
     @ManyToOne @JoinColumn(name = "idproduct")
     private Product commentProduct;
