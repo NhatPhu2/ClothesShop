@@ -15,8 +15,11 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class AccountDTO implements Serializable {
     private String username;
+    private String fullname;
+    private String email;
     private String password;
-    private Customer customer;
-    private Employee employee;
-    private Role role;
+    private String reEnterPassword;
+//    private Customer customer;
+//    private Employee employee;
+//    private Role role;
 }
