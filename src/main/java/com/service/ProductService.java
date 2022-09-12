@@ -10,4 +10,5 @@ public interface ProductService {
     ProductDTO create(ProductDTO ProductDto);
     ProductDTO update(ProductDTO ProductDto);
     void remove(List<Integer> id);
+    List<ProductDTO> page(int size, int page);
 }

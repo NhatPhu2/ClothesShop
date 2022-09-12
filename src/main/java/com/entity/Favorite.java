@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 @Data
@@ -22,6 +25,8 @@ public class Favorite {
     @ManyToOne @JoinColumn(name = "idproduct")
     private Product favoriteProduct;
 
+    
+    
     @ManyToOne @JoinColumn(name = "idcustomer")
     private Customer favoriteCustomer;
 }
