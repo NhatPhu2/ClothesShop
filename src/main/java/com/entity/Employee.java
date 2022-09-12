@@ -1,5 +1,6 @@
 package com.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,7 @@ public class Employee {
     private String photo;
     @Column(length = 50)
     private String phoneNumber;
-
+    @JsonIgnore
     @OneToOne(mappedBy = "employee")
     Account account;
 }
