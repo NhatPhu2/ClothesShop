@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.DTO.ProductDTO;
 import com.DTO.ProductSizesDTO;
 import com.service.ProductSizesService;
 import com.service.ProductStyleService;
@@ -23,4 +24,10 @@ public class ProductSizesController {
     public ResponseEntity<List<ProductSizesDTO>> getAllSizeOfProduct(@PathVariable Integer idProduct){
         return ResponseEntity.ok(productSizesService.findByIdProduct(idProduct));
     }
+
+    @GetMapping("productsizes/show/byidsize/{idSize}")
+    public ResponseEntity<List<ProductDTO>> getAllProductBySize(@PathVariable Integer idSize){
+        return ResponseEntity.ok(productSizesService.findByIdSize(idSize));
+    }
+
 }

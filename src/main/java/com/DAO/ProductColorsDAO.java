@@ -14,4 +14,8 @@ public interface ProductColorsDAO extends JpaRepository<ProductColors,Integer> {
 
     @Query("select  o from ProductColors o where o.product.idProduct=?1")
     List<ProductColors> findByIdProduct(Integer idProduct);
+
+    @Query("select o from ProductColors o where o.colorProduct.idColor=?1")
+    List<ProductColors> findByIdColor(Integer idColor);
+
 }

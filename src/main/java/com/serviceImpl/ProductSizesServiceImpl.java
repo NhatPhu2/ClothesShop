@@ -1,7 +1,9 @@
 package com.serviceImpl;
 
 import com.DAO.ProductSizesDAO;
+import com.DTO.ProductDTO;
 import com.DTO.ProductSizesDTO;
+import com.entity.Product;
 import com.entity.ProductSizes;
 import com.service.ProductSizesService;
 import com.utils.Convert;
@@ -50,6 +52,15 @@ public class ProductSizesServiceImpl implements ProductSizesService {
         ProductSizes productSizes = productSizesDAO.findByIdProductAndIdSize(idProduct,idSize);
         ProductSizesDTO productSizesDTO = convert.toDto(productSizes,ProductSizesDTO.class);
         return productSizesDTO;
+    }
+    @Override
+    public List<ProductDTO> findByIdSize(Integer idSize){
+        List<Product> products = productSizesDAO.findByIdSize(idSize);
+        List<ProductDTO> ProductDTOS = products.stream()
+                .map(product -> convert.toDto(product,ProductDTO.class))
+                .collect(Collectors.toList());
+        return  ProductDTOS;
+
     }
 
     @Override

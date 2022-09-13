@@ -14,5 +14,7 @@ public interface ProductColorsService {
     void update(ProductColorsDTO ProductColorsDto);
     void remove(Integer id);
 
+    List<ProductColorsDTO> findByIdColor(Integer idColor);
+
     List<ProductColorsDTO> findByIdProduct(Integer idProduct);
 }

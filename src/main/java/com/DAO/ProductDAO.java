@@ -11,4 +11,7 @@ import java.util.List;
 public interface ProductDAO extends JpaRepository<Product,Integer> {
     @Query("select o from Product o where o.category.idCategory=?1")
     List<Product> findAllByIdCategory(Integer idCategory);
+
+    @Query("select o from Product o where  o.productStyle.idProductStyle=?1 and o.category.idCategory=?2")
+    List<Product> findAllProductByStyle(Integer idStyle, Integer idCategory);
 }

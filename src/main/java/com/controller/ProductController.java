@@ -51,4 +51,10 @@ public class ProductController {
     public void deleteProduct(@PathVariable("id") List<Integer> id) {
         productService.remove(id);
     }
+
+    @GetMapping("product/all/bystyle/{idStyle}/{idCategory}")
+    public ResponseEntity<List<ProductDTO>> getAllProductByStyle(@PathVariable Integer idStyle,
+                                                                 @PathVariable Integer idCategory){
+        return ResponseEntity.ok(productService.findAllProductByStyle(idStyle,idCategory));
+    }
 }
