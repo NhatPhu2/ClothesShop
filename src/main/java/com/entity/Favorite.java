@@ -24,9 +24,7 @@ public class Favorite {
 
     @ManyToOne @JoinColumn(name = "idproduct")
     private Product favoriteProduct;
+    @ManyToOne @JoinColumn(name = "username")
+    private Account favoriteAccount;
 
-    
-    
-    @ManyToOne @JoinColumn(name = "idcustomer")
-    private Customer favoriteCustomer;
 }

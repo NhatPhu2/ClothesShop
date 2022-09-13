@@ -1,6 +1,5 @@
 package com.DTO;
 
-import com.entity.Customer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,5 +12,4 @@ public class OrdersDTO implements Serializable {
     private Integer idOrder;
     private Date createDate;
     private String address;
-    private Customer orderCustomer;
 }
