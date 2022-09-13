@@ -22,8 +22,8 @@ public class Orders {
     @Column(nullable = false,columnDefinition = "nvarchar(100)")
     private String address;
 
-    @ManyToOne @JoinColumn( name = "idcustomer")
-    Customer orderCustomer;
+    @ManyToOne @JoinColumn(name = "username")
+    private Account orderAccount;
 
     @OneToMany(mappedBy = "orderInOrderDetail",fetch = FetchType.LAZY)
     List<OrderDetail> orderDetails;

@@ -23,7 +23,6 @@ public class Comment {
 
     @ManyToOne @JoinColumn(name = "idproduct")
     private Product commentProduct;
-
-    @ManyToOne @JoinColumn(name = "idcustomer")
-    private Customer commentCustomer;
+    @ManyToOne @JoinColumn(name = "username")
+    private Account commentAccount;
 }

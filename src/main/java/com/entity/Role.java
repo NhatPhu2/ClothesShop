@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +18,7 @@ public class Role {
     @Column(nullable = false,columnDefinition = "nvarchar(50)")
     private String nameRole;
 
-    @OneToOne(mappedBy = "role")
-    Account account;
+    @OneToMany(mappedBy = "authorityRole")
+    List<Authorities> roles;
+
 }

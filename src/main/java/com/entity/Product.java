@@ -17,11 +17,11 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProduct;
-    @Column(nullable = false,columnDefinition = "nvarchar(200)")
+    @Column(nullable = false,columnDefinition = "varchar(200)")
     private String nameProduct;
     @Column(nullable = false)
     private double price;
-    @Column(nullable = false,columnDefinition = "nvarchar(200)")
+    @Column(nullable = false,columnDefinition = "varchar(200)")
     private String description;
     @Column(nullable = false)
     private Date createDate;

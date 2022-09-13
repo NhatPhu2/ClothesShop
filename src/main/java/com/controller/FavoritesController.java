@@ -26,16 +26,12 @@ public class FavoritesController {
 	
 	@Autowired
 	private  FavoriteService favoriteService;
-	@Autowired
-	private Convert convert;
-	
 	@GetMapping("favorites/all")
-
 	public ResponseEntity<List<FavoriteDTO>> getFavorites(){
 		return  ResponseEntity.ok(favoriteService.findAll());
 	}
 	@PostMapping("favorites")
-	public ResponseEntity<?> favorite(@RequestBody CustommerAndProduct cap){
+	public ResponseEntity<?> favorite( @RequestBody CustommerAndProduct cap){
 	Favorite favorite = favoriteService.checkInDB(cap.idCustomer, cap.idProduct);
 		return ResponseEntity.ok().build();
 	}

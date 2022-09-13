@@ -7,8 +7,7 @@ import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-public class CustomerDTO implements Serializable {
-    private Integer idCustomer;
+public class AuthoritiesDTO implements Serializable {
     private String fullname;
     private String email;
     private String photo;

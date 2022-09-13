@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,13 +17,24 @@ public class Account {
     private String username;
     @Column(nullable = false,length = 100)
     private String password;
+    @Column(nullable = false,columnDefinition = "nvarchar(60)")
+    private String fullname;
+    @Column(nullable = false, length = 50)
+    private String email;
+    @Column(length = 50)
+    private String photo;
+    @Column(length = 50)
+    private String phoneNumber;
 
-    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name ="idcustomer")
-    Customer customer;
+    @OneToMany(mappedBy = "authorityAccount")
+    List<Authorities> accounts;
 
-    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = "idemployee")
-    Employee employee;
+    @OneToMany(mappedBy = "commentAccount")
+    List<Comment> comments;
 
-    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = "idrole")
-    Role role;
+    @OneToMany(mappedBy = "favoriteAccount")
+    List<Favorite> favorites;
+
+    @OneToMany(mappedBy = "orderAccount")
+    List<Orders> orders;
 }
