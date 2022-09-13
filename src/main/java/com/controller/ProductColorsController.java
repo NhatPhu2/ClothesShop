@@ -32,6 +32,9 @@ public class ProductColorsController {
         return ResponseEntity.ok(productColorsService.findByIdProduct(idProduct));
     }
 
-
+    @GetMapping("productcolor/show/byidcolor/{idColor}")
+    public ResponseEntity<List<ProductColorsDTO>> getAllProductByColor(@PathVariable Integer idColor){
+        return ResponseEntity.ok(productColorsService.findByIdColor(idColor));
+    }
 
 }

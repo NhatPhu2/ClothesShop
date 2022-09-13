@@ -54,6 +54,14 @@ public class ProductColorsServiceImpl implements ProductColorsService {
     public void remove(Integer id) {
 
     }
+    @Override
+    public List<ProductColorsDTO> findByIdColor(Integer idColor){
+        List<ProductColors> productColors = productColorsDAO.findByIdColor(idColor);
+        List<ProductColorsDTO> productColorsDTOS = productColors.stream()
+                .map(productColor -> convert.toDto(productColor,ProductColorsDTO.class))
+                .collect(Collectors.toList());
+        return  productColorsDTOS;
+    }
 
     @Override
     public List<ProductColorsDTO> findByIdProduct(Integer idProduct) {

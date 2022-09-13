@@ -26,15 +26,15 @@ public class Account {
     @Column(length = 50)
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "authorityAccount")
-    List<Authorities> accounts;
+    @OneToMany(mappedBy = "authorityAccount" , fetch = FetchType.LAZY)
+    List<Authorities> authorities;
 
-    @OneToMany(mappedBy = "commentAccount")
+    @OneToMany(mappedBy = "commentAccount", fetch = FetchType.LAZY)
     List<Comment> comments;
 
-    @OneToMany(mappedBy = "favoriteAccount")
+    @OneToMany(mappedBy = "favoriteAccount", fetch = FetchType.LAZY)
     List<Favorite> favorites;
 
-    @OneToMany(mappedBy = "orderAccount")
+    @OneToMany(mappedBy = "orderAccount", fetch = FetchType.LAZY)
     List<Orders> orders;
 }

@@ -74,4 +74,13 @@ public class ProductServiceImpl implements ProductService {
     	return pages.stream().map(t -> convert.toDto(t, ProductDTO.class)).collect(Collectors.toList());
 	}
 
+    @Override
+    public List<ProductDTO> findAllProductByStyle(Integer idStyle, Integer idCategory){
+        List<Product> products = productDAO.findAllProductByStyle(idStyle,idCategory);
+        List<ProductDTO> productDTOS = products.stream()
+                .map(product -> convert.toDto(product,ProductDTO.class))
+                .collect(Collectors.toList());
+        return productDTOS;
+    }
+
 }
