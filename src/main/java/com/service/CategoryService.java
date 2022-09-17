@@ -2,6 +2,7 @@ package com.service;
 
 import com.DTO.CategoryDTO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
