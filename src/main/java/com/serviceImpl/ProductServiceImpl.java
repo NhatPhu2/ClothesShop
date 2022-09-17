@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public ProductDTO create(ProductDTO ProductDto) {
         Product newProduct = convert.toEntity(ProductDto, Product.class);
+        newProduct.setCreateDate(new Date());
         ProductDTO productDto = convert.toDto(productDAO.save(newProduct), ProductDTO.class);
         return productDto;
     }
@@ -49,6 +51,7 @@ public class ProductServiceImpl implements ProductService {
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public ProductDTO update(ProductDTO ProductDto) {
         Product newProduct = convert.toEntity(ProductDto,Product.class);
+        newProduct.setCreateDate(new Date());
         ProductDTO productDto = convert.toDto(productDAO.save(newProduct), ProductDTO.class);
         return productDto;
     }

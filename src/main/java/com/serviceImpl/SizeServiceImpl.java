@@ -1,11 +1,21 @@
 package com.serviceImpl;
 
+import com.DAO.SizeDAO;
 import com.DTO.SizeDTO;
 import com.service.SizeService;
+import com.utils.Convert;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class SizeServiceImpl implements SizeService {
+
+    @Autowired
+    SizeDAO sizeDAO;
+
+    @Autowired
+    Convert convert;
     @Override
     public List<SizeDTO> findAll() {
         return null;
@@ -13,7 +23,7 @@ public class SizeServiceImpl implements SizeService {
 
     @Override
     public SizeDTO findById(Integer id) {
-        return null;
+        return convert.toDto(sizeDAO.findById(id).get(),SizeDTO.class);
     }
 
     @Override

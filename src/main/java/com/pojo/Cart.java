@@ -3,15 +3,26 @@ package com.pojo;
 public class Cart {
     private Integer idProduct;
     private String nameProduct;
-    private double price;
-    private String photo;
+    private double priceProduct;
+    private String photoColor;
     private int quantity;
     private Integer idColor;
     private String nameColor;
     private Integer idSize;
     private String nameSize;
+    private Integer idProductsColors;
+
 
     public Cart() {
+    }
+
+
+    public Integer getIdProductsColors() {
+        return idProductsColors;
+    }
+
+    public void setIdProductsColors(Integer idProductsColors) {
+        this.idProductsColors = idProductsColors;
     }
 
     public Integer getIdSize() {
@@ -46,20 +57,20 @@ public class Cart {
         this.nameProduct = nameProduct;
     }
 
-    public double getPrice() {
-        return price;
+    public double getPriceProduct() {
+        return priceProduct;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPriceProduct(double priceProduct) {
+        this.priceProduct = priceProduct;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getPhotoColor() {
+        return photoColor;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setPhotoColor(String photoColor) {
+        this.photoColor = photoColor;
     }
 
     public int getQuantity() {

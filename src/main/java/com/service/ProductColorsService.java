@@ -10,8 +10,8 @@ public interface ProductColorsService {
 
     ProductColorsDTO findByIdColorAndIdProduct(Integer idColor, Integer idProduct);
 
-    void create(ProductColorsDTO ProductColorsDto);
-    void update(ProductColorsDTO ProductColorsDto);
+    ProductColorsDTO create(ProductColorsDTO ProductColorsDto);
+    ProductColorsDTO update(ProductColorsDTO ProductColorsDto);
     void remove(Integer id);
 
     List<ProductColorsDTO> findByIdColor(Integer idColor);
