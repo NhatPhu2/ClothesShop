@@ -31,7 +31,6 @@ public class ProductController {
     @GetMapping("/products/price/{min}/{max}")
     public ResponseEntity<List<ProductDTO>> getProductByMinMaxPrice(@PathVariable("min") Optional<Double> min,@PathVariable("max") Optional<Double> max ){
     	double mi = min.orElse(0.0);
-    
     	double ma = max.orElse(productService.findAll().stream().mapToDouble(p -> p.getPrice()).max().getAsDouble());
     	List<ProductDTO> list = productService.findAll().stream().filter(t -> (t.getPrice()>=mi && t.getPrice()<=ma)).collect(Collectors.toList());
     	return ResponseEntity.ok(list);
@@ -58,7 +57,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/admin/{id}")
-    public void deleteProduct(@PathVariable("id") List<Integer> id) {
+    public void deleteProduct(@RequestBody List<Integer> id) {
         productService.remove(id);
     }
 

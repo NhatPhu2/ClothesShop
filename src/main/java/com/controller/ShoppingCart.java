@@ -70,9 +70,6 @@ public class ShoppingCart {
     @PostMapping("pay") //thanh toán
     public ResponseEntity<List<OrderDetailDTO>> pay(@RequestBody Map<String, Cart> cart,
                                                     @RequestParam String address) {
-
-
-
         OrdersDTO ordersDTO = new OrdersDTO();
         ordersDTO.setAddress(address);
         ordersDTO.setCreateDate(new Date());
@@ -84,7 +81,6 @@ public class ShoppingCart {
             ProductSizesDTO productSizesDTO = productSizesService.findByIdProductAndIdSize(valueCart.getIdProduct(),valueCart.getIdSize());
             productSizesDTO.setQuantity(productSizesDTO.getQuantity() - valueCart.getQuantity());
             productSizesService.update(productSizesDTO);
-
             //thanh toán và trả về hóa đơn chi tiết cho người dùng
             orderDetailDTO.setQuantity(valueCart.getQuantity());
             orderDetailDTO.setAmount(valueCart.getQuantity() * valueCart.getPrice());
@@ -97,6 +93,5 @@ public class ShoppingCart {
         }).collect(Collectors.toList());//chuyển đổi map sang list
         return ResponseEntity.ok(orderDetailDTOS);//trả về hóa đơn chi tiết cho người dùng
     }
-
 
 }
