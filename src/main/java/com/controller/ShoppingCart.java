@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("cart")
+@RequestMapping("api/v1")
 @Validated
 public class ShoppingCart {
 
@@ -38,8 +38,8 @@ public class ShoppingCart {
     @Autowired
     OrderDetailService orderDetailService;
 
-    @PostMapping("add/{id}/{idSize}/{idColor}")
-    public ResponseEntity<Map<String, Cart>> add(@PathVariable("id") Integer idProduct,
+    @PostMapping("user/cart/{id}/{idSize}/{idColor}")
+    public ResponseEntity<Map<String, Cart>> addCart(@PathVariable("id") Integer idProduct,
                                                  @PathVariable("idSize") @Min(value = 1, message = "{NotNull.ProductSizesDTO.idSize}") Integer idSize,
                                                  @PathVariable("idColor") @Min(value = 1 , message = "{NotNull.ProductColorsDTO.idColor}") Integer idColor,
                                                  @RequestBody Optional<Map<String, Cart>> existCart) {
@@ -67,10 +67,9 @@ public class ShoppingCart {
         return ResponseEntity.ok(carts);
     }
 
-    @PostMapping("pay") //thanh toán
+    @PostMapping("user/cart/payment") //thanh toán
     public ResponseEntity<List<OrderDetailDTO>> pay(@RequestBody Map<String, Cart> cart,
                                                     @RequestParam String address) {
-
         OrdersDTO ordersDTO = new OrdersDTO();
         ordersDTO.setAddress(address);
         ordersDTO.setCreateDate(new Date());
@@ -82,7 +81,6 @@ public class ShoppingCart {
             ProductSizesDTO productSizesDTO = productSizesService.findByIdProductColorsAndIdSize(valueCart.getIdProductsColors(),valueCart.getIdSize());
             productSizesDTO.setQuantity(productSizesDTO.getQuantity() - valueCart.getQuantity());
             productSizesService.update(productSizesDTO);
-
             //thanh toán và trả về hóa đơn chi tiết cho người dùng
             orderDetailDTO.setQuantity(valueCart.getQuantity());
             orderDetailDTO.setAmount(valueCart.getQuantity() * valueCart.getPriceProduct());
@@ -95,6 +93,5 @@ public class ShoppingCart {
         }).collect(Collectors.toList());//chuyển đổi map sang list
         return ResponseEntity.ok(orderDetailDTOS);//trả về hóa đơn chi tiết cho người dùng
     }
-
 
 }

@@ -77,10 +77,6 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.create(productDTO));
     }
 
-    @PutMapping("/admin/products")
-    public ResponseEntity<ProductDTO> updateProduct(@Valid @RequestBody ProductDTO productDTO){
-        return ResponseEntity.ok(productService.update(productDTO));
-    }
 
     @DeleteMapping("/admin/product/{idProduct}")
     public void deleteProduct(@PathVariable @NotNull(message = "Vui lòng chọn ít nhất 1 sản phẩm để xóa")

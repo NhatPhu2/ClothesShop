@@ -23,9 +23,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public List<CategoryDTO> findAll() {
         List<Category> listProduct = categoryDAO.findAll();
-        listProduct.get(0).getProducts();
         List<CategoryDTO> listCategoryDTO = listProduct.stream().
-                map(Category -> convert.toDto(Category,CategoryDTO.class))
+
+                map(category -> convert.toDto(category,CategoryDTO.class))
                 .collect(Collectors.toList());
         return listCategoryDTO;
     }
@@ -42,7 +42,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public CategoryDTO create(CategoryDTO CategoryDto) {
         Category newCategory = convert.toEntity(CategoryDto, Category.class);
-        CategoryDTO categoryDTO = convert.toDto(newCategory, CategoryDTO.class);
+        CategoryDTO categoryDTO = convert.toDto(categoryDAO.save(newCategory), CategoryDTO.class);
         return categoryDTO;
     }
 
