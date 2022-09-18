@@ -9,13 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
 public class SizeServiceImpl implements SizeService {
+
     @Autowired
-    SizeDAO sizeDao;
+    SizeDAO sizeDAO;
 
     @Autowired
     Convert convert;
@@ -29,7 +31,7 @@ public class SizeServiceImpl implements SizeService {
 
     @Override
     public SizeDTO findById(Integer id) {
-        return convert.toDto(sizeDao.findById(id), SizeDTO.class);
+        return convert.toDto(sizeDAO.findById(id).get(),SizeDTO.class);
     }
 
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})

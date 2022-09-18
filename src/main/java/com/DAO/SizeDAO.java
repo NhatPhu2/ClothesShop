@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface SizeDAO extends JpaRepository<Size,Integer> {
+    @Query("select o from ProductSizes o where o.productColors.idProductsColors=?1")
+    List<Size> findSizeByIdProductColor(Integer idProductColor);
+
 }

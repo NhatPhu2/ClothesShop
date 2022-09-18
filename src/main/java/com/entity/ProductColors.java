@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,4 +22,7 @@ public class ProductColors {
     private Product product;
     @ManyToOne @JoinColumn(name = "idcolor")
     private Color colorProduct;
+
+    @OneToMany(mappedBy = "productColors",fetch = FetchType.LAZY)
+    List<ProductSizes> productSizes;
 }

@@ -2,13 +2,16 @@ package com.serviceImpl;
 
 import com.DAO.CategoryDAO;
 import com.DTO.CategoryDTO;
+import com.DTO.ProductStyleDTO;
 import com.entity.Category;
+import com.google.gson.reflect.TypeToken;
 import com.service.CategoryService;
 import com.utils.Convert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
@@ -19,11 +22,15 @@ public class CategoryServiceImpl implements CategoryService {
     Convert convert;
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public List<CategoryDTO> findAll() {
-        List<CategoryDTO> listCategoryDTO = categoryDAO.findAll().stream().
-                map(Category -> convert.toDto(Category,CategoryDTO.class))
+        List<Category> listProduct = categoryDAO.findAll();
+        List<CategoryDTO> listCategoryDTO = listProduct.stream().
+
+                map(category -> convert.toDto(category,CategoryDTO.class))
                 .collect(Collectors.toList());
         return listCategoryDTO;
     }
+
+
 
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public CategoryDTO findById(Integer id) {
