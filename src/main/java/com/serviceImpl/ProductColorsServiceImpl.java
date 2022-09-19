@@ -7,6 +7,7 @@ import com.service.ProductColorsService;
 import com.utils.Convert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public class ProductColorsServiceImpl implements ProductColorsService {
     public List<ProductColorsDTO> findAll() {
         List<ProductColors> productColor = productColorsDAO.findAll();
         List<ProductColorsDTO> productColorsDTOS = productColor.stream()
-                .map(product -> convert.toDto(productColor, ProductColorsDTO.class))
+                .map(product -> convert.toDto(product, ProductColorsDTO.class))
                 .collect(Collectors.toList());
         return productColorsDTOS;
     }
@@ -40,19 +41,23 @@ public class ProductColorsServiceImpl implements ProductColorsService {
         return productColorsDTO;
     }
 
-    @Override
-    public void create(ProductColorsDTO ProductColorsDto) {
-
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
+    public ProductColorsDTO create(ProductColorsDTO productColorsDto) {
+        ProductColors productColors = convert.toEntity(productColorsDto,ProductColors.class);
+        ProductColorsDTO productColorsDTO = convert.toDto(productColorsDAO.save(productColors),ProductColorsDTO.class);
+        return productColorsDTO;
     }
 
-    @Override
-    public void update(ProductColorsDTO ProductColorsDto) {
-
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
+    public ProductColorsDTO update(ProductColorsDTO productColorsDto) {
+        ProductColors productColors = convert.toEntity(productColorsDto,ProductColors.class);
+        ProductColorsDTO productColorsDTO = convert.toDto(productColorsDAO.save(productColors),ProductColorsDTO.class);
+        return productColorsDTO;
     }
 
-    @Override
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public void remove(Integer id) {
-
+        productColorsDAO.deleteById(id);
     }
     @Override
     public List<ProductColorsDTO> findByIdColor(Integer idColor){

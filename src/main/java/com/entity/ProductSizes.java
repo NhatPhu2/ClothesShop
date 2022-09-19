@@ -18,8 +18,8 @@ public class ProductSizes {
     private int quantity;
     @ManyToOne @JoinColumn(name = "idsize")
     private Size sizeProduct;
+    @ManyToOne @JoinColumn(name = "idProductsColors")
+    private ProductColors productColors;
 
-    @ManyToOne @JoinColumn(name = "idproduct")
-    private Product product;
 
 }

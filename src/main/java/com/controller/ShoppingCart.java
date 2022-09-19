@@ -5,60 +5,60 @@ import com.DTO.*;
 
 import com.pojo.Cart;
 import com.service.*;
-import com.utils.Convert;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("api/v1/cart")
+@RequestMapping("api/v1")
+@Validated
 public class ShoppingCart {
 
     @Autowired
     ProductColorsService productColorsService;
 
     @Autowired
-    ProductSizesService productSizesService;
+    SizeService sizeService;
 
     @Autowired
     OrdersService ordersService;
 
     @Autowired
-    OrderDetailService orderDetailService;
+    ProductSizesService productSizesService;
 
     @Autowired
-    ProductService productService;
+    OrderDetailService orderDetailService;
 
-    @PostMapping("add/{id}/{idSize}/{idColor}")
-    public ResponseEntity<Map<String, Cart>> add(@PathVariable("id") Integer idProduct,
-                                                 @PathVariable("idSize") Integer idSize,
-                                                 @PathVariable("idColor") Integer idColor,
+    @PostMapping("user/cart/{id}/{idSize}/{idColor}")
+    public ResponseEntity<Map<String, Cart>> addCart(@PathVariable("id") Integer idProduct,
+                                                 @PathVariable("idSize") @Min(value = 1, message = "{NotNull.ProductSizesDTO.idSize}") Integer idSize,
+                                                 @PathVariable("idColor") @Min(value = 1 , message = "{NotNull.ProductColorsDTO.idColor}") Integer idColor,
                                                  @RequestBody Optional<Map<String, Cart>> existCart) {
         //nếu chưa có sản phẩm trong giỏ thì tạo mới
         Map<String, Cart> carts = existCart.orElse(new HashMap<>());
-        String key = idProduct + "/" + idSize;
+        String key = idProduct + "/" + idSize + "/" + idColor;
         if (carts.containsKey(key)) {//nếu id sản phẩm và size sản phẩm trùng nhua thì tăng số lượng lên 1
             Cart c = carts.get(key);
             c.setQuantity(c.getQuantity() + 1);
             carts.put(key, c);
         } else {
             ProductColorsDTO productColorsDTO = productColorsService.findByIdColorAndIdProduct(idColor, idProduct);
-            ProductSizesDTO productSizesDTO = productSizesService.findByIdProductAndIdSize(idProduct, idSize);
-            ProductDTO productDTO = productService.findById(idProduct);
+            SizeDTO sizeDTO = sizeService.findById(idSize);
             Cart cart = new Cart();
             try {
-                BeanUtils.copyProperties(cart, productDTO);//copy thuộc tính
-                cart.setNameColor(productColorsDTO.getNameColor());
-                cart.setPhoto(productColorsDTO.getPhotoColor());
-                cart.setIdColor(productColorsDTO.getIdColor());
+                BeanUtils.copyProperties(cart, productColorsDTO);//copy thuộc tính
                 cart.setQuantity(1);
-                cart.setNameSize(productSizesDTO.getNameSize());
-                cart.setIdSize(productSizesDTO.getIdSize());
+                cart.setNameSize(sizeDTO.getNameSize());
+                cart.setIdSize(sizeDTO.getIdSize());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -67,12 +67,9 @@ public class ShoppingCart {
         return ResponseEntity.ok(carts);
     }
 
-    @PostMapping("pay") //thanh toán
+    @PostMapping("user/cart/payment") //thanh toán
     public ResponseEntity<List<OrderDetailDTO>> pay(@RequestBody Map<String, Cart> cart,
                                                     @RequestParam String address) {
-
-
-
         OrdersDTO ordersDTO = new OrdersDTO();
         ordersDTO.setAddress(address);
         ordersDTO.setCreateDate(new Date());
@@ -81,13 +78,12 @@ public class ShoppingCart {
         OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
         List<OrderDetailDTO> orderDetailDTOS = cart.values().stream().map(valueCart -> {
             //cập nhật lại số lượng sản phẩm
-            ProductSizesDTO productSizesDTO = productSizesService.findByIdProductAndIdSize(valueCart.getIdProduct(),valueCart.getIdSize());
+            ProductSizesDTO productSizesDTO = productSizesService.findByIdProductColorsAndIdSize(valueCart.getIdProductsColors(),valueCart.getIdSize());
             productSizesDTO.setQuantity(productSizesDTO.getQuantity() - valueCart.getQuantity());
             productSizesService.update(productSizesDTO);
-
             //thanh toán và trả về hóa đơn chi tiết cho người dùng
             orderDetailDTO.setQuantity(valueCart.getQuantity());
-            orderDetailDTO.setAmount(valueCart.getQuantity() * valueCart.getPrice());
+            orderDetailDTO.setAmount(valueCart.getQuantity() * valueCart.getPriceProduct());
             orderDetailDTO.setIdProduct(valueCart.getIdProduct());
             orderDetailDTO.setColorName(valueCart.getNameColor());
             orderDetailDTO.setSizeName(valueCart.getNameSize());
@@ -97,6 +93,5 @@ public class ShoppingCart {
         }).collect(Collectors.toList());//chuyển đổi map sang list
         return ResponseEntity.ok(orderDetailDTOS);//trả về hóa đơn chi tiết cho người dùng
     }
-
 
 }

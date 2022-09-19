@@ -21,7 +21,7 @@ public class Product {
     private String nameProduct;
     @Column(nullable = false)
     private double price;
-    @Column(nullable = false,columnDefinition = "varchar(200)")
+    @Column(columnDefinition = "varchar(200)")
     private String description;
     @Column(nullable = false)
     private Date createDate;
@@ -29,15 +29,12 @@ public class Product {
     private String productPhoto;
 
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
-    List<ProductSizes> productSizes;
-
-    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     List<ProductColors> productColors;
 
     @ManyToOne @JoinColumn(name = "idcategory")
     private Category category;
 
-    @ManyToOne @JoinColumn(name = "idproducttype")
+    @ManyToOne @JoinColumn(name = "idproductstyle")
     private ProductStyle productStyle;
 
     @OneToMany(mappedBy = "favoriteProduct",fetch = FetchType.LAZY)
