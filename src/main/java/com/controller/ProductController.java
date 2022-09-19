@@ -13,11 +13,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("api/v1")
 public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/product/all")
+    @GetMapping("/products")
     public ResponseEntity<List<ProductDTO>>  getAllProducts() {
 
         return ResponseEntity.ok(productService.findAll());
@@ -37,27 +38,27 @@ public class ProductController {
     	return ResponseEntity.ok(list);
     }
     
-    @GetMapping("/product/bycategory/{idCategory}")
+    @GetMapping("/products/bycategory/{idCategory}")
     public ResponseEntity<List<ProductDTO>> showByIdCategory(@PathVariable Integer idCategory){
         return ResponseEntity.ok(productService.findAllByIdCategory(idCategory));
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/products/{id}")
     public ProductDTO getProductById(@PathVariable("id") Integer id) {
         return productService.findById(id);
     }
 
-    @PostMapping("/admin/create")
+    @PostMapping("/admin/products/create")
     public ProductDTO createProduct(@RequestBody ProductDTO product){
         return productService.create(product);
     }
 
-    @PutMapping("/admin/update")
+    @PutMapping("/admin/products/update")
     public ProductDTO updateProduct(@RequestBody ProductDTO product){
         return productService.update(product);
     }
 
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("/admin/products/{id}")
     public void deleteProduct(@PathVariable("id") List<Integer> id) {
         productService.remove(id);
     }

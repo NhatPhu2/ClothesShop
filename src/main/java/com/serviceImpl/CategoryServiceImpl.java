@@ -26,9 +26,10 @@ public class CategoryServiceImpl implements CategoryService {
         return listCategoryDTO;
     }
 
-    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
+    @Override 
     public CategoryDTO findById(Integer id) {
-        Category category = categoryDAO.findById(id).get();
+        Category category = categoryDAO.findById(id).orElse(null);
+        if (category==null) return null;
         CategoryDTO categoryDTO = convert.toDto(category, CategoryDTO.class);
         return categoryDTO;
     }
@@ -48,7 +49,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
-    public void remove(List<Integer> id) {
-        categoryDAO.deleteAllById(id);
+    public void remove(int id) {
+        categoryDAO.deleteById(id);
     }
+
+	@Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
+	public void removeAll(List<Integer> id) {
+		// TODO Auto-generated method stub
+		categoryDAO.deleteAllById(id);
+	}
 }

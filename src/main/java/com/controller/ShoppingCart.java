@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("cart")
+@RequestMapping("api/v1/cart")
 public class ShoppingCart {
 
     @Autowired

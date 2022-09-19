@@ -10,5 +10,6 @@ public interface CategoryService {
     CategoryDTO findById(Integer id);
     CategoryDTO create(CategoryDTO CategoryDto);
     CategoryDTO update(CategoryDTO CategoryDto);
-    void remove(List<Integer> id);
+    void remove(int id);
+	void removeAll(List<Integer> id);
 }
