@@ -2,6 +2,7 @@ package com.service;
 
 import com.DTO.ProductDTO;
 import com.DTO.ProductSizesDTO;
+import com.DTO.SizeDTO;
 import com.entity.Product;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface ProductSizesService {
     void remove(Integer id);
 
     ProductSizesDTO findByIdProductColorsAndIdSize(Integer idSize, Integer idProductColor);
+
+    List<SizeDTO> findByIdProductColor(Integer idProductColor);
 
 //    ProductSizesDTO findByIdProductAndIdSize(Integer idProduct, Integer idSize);
 //

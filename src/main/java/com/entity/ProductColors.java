@@ -16,7 +16,7 @@ public class ProductColors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProductsColors;
-    @Column(nullable = false,length = 70)
+    @Column(nullable = false,columnDefinition = "TEXT")
     private String photoColor;
     @ManyToOne @JoinColumn(name = "idproduct")
     private Product product;

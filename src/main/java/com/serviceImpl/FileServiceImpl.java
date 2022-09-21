@@ -52,7 +52,6 @@ public class FileServiceImpl implements FileService {
         try {
             String fileName = multipartFile.getOriginalFilename();                        // to get original file name
             fileName = UUID.randomUUID().toString().concat(this.getExtension(fileName));  // to generated random string values for file name.
-
             File file = this.convertToFile(multipartFile, fileName);                      // to convert multipartFile to File
             String TEMP_URL = this.uploadFile(file, fileName);                                   // to get uploaded file link
             file.delete();                                                                // to delete the copy of uploaded file stored in the project folder

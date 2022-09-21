@@ -78,8 +78,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
     @Override
-    public List<ProductDTO> findAllProductByStyle(Integer idStyle, Integer idCategory){
-        List<Product> products = productDAO.findAllProductByStyle(idStyle,idCategory);
+    public List<ProductDTO> fillByIdCategoryAndIdStyle(Integer idCategory,Integer idProductStyle){
+        List<Product> products = productDAO.findByIdCategoryAndIdProductStyle(idCategory,idProductStyle);
         List<ProductDTO> productDTOS = products.stream()
                 .map(product -> convert.toDto(product,ProductDTO.class))
                 .collect(Collectors.toList());

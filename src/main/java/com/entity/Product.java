@@ -21,11 +21,11 @@ public class Product {
     private String nameProduct;
     @Column(nullable = false)
     private double price;
-    @Column(columnDefinition = "varchar(200)")
+    @Column(columnDefinition = "TEXT")
     private String description;
     @Column(nullable = false)
     private Date createDate;
-    @Column(nullable = false,columnDefinition = "varchar(50)")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String productPhoto;
 
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)

@@ -1,6 +1,8 @@
 package com.controller;
 
+import com.DTO.ColorDTO;
 import com.DTO.ProductColorsDTO;
+import com.DTO.SizeDTO;
 import com.service.ProductColorsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,15 +25,15 @@ public class ProductColorsController {
 
     @GetMapping("productcolor/detail/{idProduct}/{idColor}")
     public ResponseEntity<ProductColorsDTO>  detailColorProduct(@PathVariable Integer idProduct,
-                                                                @PathVariable Optional<Integer>  idColor){
-        ProductColorsDTO productColorsDTO = productColorsService.findByIdColorAndIdProduct(idColor.orElse(1),idProduct);
+                                                                @PathVariable Integer  idColor){
+        ProductColorsDTO productColorsDTO = productColorsService.findByIdColorAndIdProduct(idColor,idProduct);
         return ResponseEntity.ok(productColorsDTO);
     }
 
 
     @GetMapping("productcolor/{idColor}")
     public ResponseEntity<List<ProductColorsDTO>> getAllProductByColor(@PathVariable Integer idColor){
-        return ResponseEntity.ok(productColorsService.findByIdColor(idColor));
+        return ResponseEntity.ok(productColorsService.findByColor(idColor));
     }
 
     @PostMapping("admin/productcolor")
@@ -48,6 +50,12 @@ public class ProductColorsController {
     public ResponseEntity deleteProductColor(@PathVariable Integer idProductColor){
         productColorsService.remove(idProductColor);
         return ResponseEntity.ok().build();
+    }
+
+
+    @GetMapping("colors/byproduct/{idProduct}")
+    public List<ColorDTO> getColorsByIdProduct(@PathVariable Integer idProduct){
+        return productColorsService.findByIdProduct(idProduct);
     }
 
 }

@@ -2,6 +2,7 @@ package com.controller;
 
 import com.DTO.ProductDTO;
 import com.DTO.ProductSizesDTO;
+import com.DTO.SizeDTO;
 import com.service.ProductSizesService;
 import com.service.ProductStyleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,14 @@ public class ProductSizesController {
     }
 
     @DeleteMapping("admin/productsize/{idProductSize}")
-    public ResponseEntity deleteProductSize(Integer idProductSize){
+    public ResponseEntity deleteProductSize(@PathVariable Integer idProductSize){
         productSizesService.remove(idProductSize);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("size/{idProductColor}")
+    public List<SizeDTO> getSizesByIdProduct(@PathVariable Integer idProductColor){
+        return productSizesService.findByIdProductColor(idProductColor);
     }
 
 }

@@ -1,7 +1,9 @@
 package com.serviceImpl;
 
 import com.DAO.ProductColorsDAO;
+import com.DTO.ColorDTO;
 import com.DTO.ProductColorsDTO;
+import com.entity.Color;
 import com.entity.ProductColors;
 import com.service.ProductColorsService;
 import com.utils.Convert;
@@ -59,21 +61,24 @@ public class ProductColorsServiceImpl implements ProductColorsService {
     public void remove(Integer id) {
         productColorsDAO.deleteById(id);
     }
+
+
     @Override
-    public List<ProductColorsDTO> findByIdColor(Integer idColor){
-        List<ProductColors> productColors = productColorsDAO.findByIdColor(idColor);
-        List<ProductColorsDTO> productColorsDTOS = productColors.stream()
-                .map(productColor -> convert.toDto(productColor,ProductColorsDTO.class))
+    public List<ColorDTO> findByIdProduct(Integer idProduct) {
+        List<Color> colors = productColorsDAO.findByIdProduct(idProduct);
+        List<ColorDTO> colorDTOS= colors.stream()
+                .map(productColor -> convert.toDto(productColor, ColorDTO.class))
                 .collect(Collectors.toList());
-        return  productColorsDTOS;
+        return colorDTOS;
     }
 
     @Override
-    public List<ProductColorsDTO> findByIdProduct(Integer idProduct) {
-        List<ProductColors> productColors = productColorsDAO.findByIdProduct(idProduct);
-        List<ProductColorsDTO> productColorsDTOS = productColors.stream()
-                .map(productColor -> convert.toDto(productColor,ProductColorsDTO.class))
+    public List<ProductColorsDTO> findByColor(Integer idColor) {
+        List<ProductColors> productColors = productColorsDAO.fillByColor(idColor);
+        System.out.println(productColors.size());
+        List<ProductColorsDTO> ProductColorsDTO= productColors.stream()
+                .map(productColor -> convert.toDto(productColor, ProductColorsDTO.class))
                 .collect(Collectors.toList());
-        return productColorsDTOS;
+        return ProductColorsDTO;
     }
 }

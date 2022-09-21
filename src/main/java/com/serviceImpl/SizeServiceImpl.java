@@ -23,7 +23,7 @@ public class SizeServiceImpl implements SizeService {
     Convert convert;
     @Override
     public List<SizeDTO> findAll() {
-        List <Size> sizes = sizeDao.findAll();
+        List <Size> sizes = sizeDAO.findAll();
         List <SizeDTO> sizeDTOs =  sizes.stream().map(size -> convert.toDto( size, SizeDTO.class))
                 .collect(Collectors.toList());
         return sizeDTOs;
@@ -36,16 +36,16 @@ public class SizeServiceImpl implements SizeService {
 
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public SizeDTO create(SizeDTO SizeDto) {
-        return convert.toDto(sizeDao.save(convert.toEntity(SizeDto, Size.class)), SizeDTO.class);
+        return convert.toDto(sizeDAO.save(convert.toEntity(SizeDto, Size.class)), SizeDTO.class);
     }
 
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public SizeDTO update(SizeDTO SizeDto) {
-        return convert.toDto(sizeDao.save(convert.toEntity(SizeDto, Size.class)), SizeDTO.class);
+        return convert.toDto(sizeDAO.save(convert.toEntity(SizeDto, Size.class)), SizeDTO.class);
     }
 
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public void remove(List<Integer> id) {
-        sizeDao.deleteAllById(id);
+        sizeDAO.deleteAllById(id);
     }
 }
