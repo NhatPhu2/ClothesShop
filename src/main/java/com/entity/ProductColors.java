@@ -18,7 +18,7 @@ public class ProductColors {
     private Integer idProductsColors;
     @Column(nullable = false,columnDefinition = "TEXT")
     private String photoColor;
-    @ManyToOne @JoinColumn(name = "idproduct")
+    @ManyToOne(cascade = CascadeType.ALL) @JoinColumn(name = "idproduct")
     private Product product;
     @ManyToOne @JoinColumn(name = "idcolor")
     private Color colorProduct;
