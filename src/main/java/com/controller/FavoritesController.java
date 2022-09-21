@@ -10,6 +10,7 @@ import com.utils.Convert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +23,13 @@ import lombok.RequiredArgsConstructor;
 
 
 @RestController
+@CrossOrigin("*")
+@RequestMapping("api/v1/")
 public class FavoritesController {
 	
 	@Autowired
 	private  FavoriteService favoriteService;
-	@GetMapping("favorites/all")
+	@GetMapping("favorites")
 	public ResponseEntity<List<FavoriteDTO>> getFavorites(){
 		return  ResponseEntity.ok(favoriteService.findAll());
 	}

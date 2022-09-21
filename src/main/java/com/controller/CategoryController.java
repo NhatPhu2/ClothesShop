@@ -6,12 +6,13 @@ import com.DTO.CategoryDTO;
 import com.DTO.ProductDTO;
 import com.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+
 @RequestMapping("api/v1")
 @CrossOrigin("*")
 public class CategoryController {
@@ -23,23 +24,41 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.findAll());
     }
 
-    @GetMapping("/category/{id}")
-    public CategoryDTO getCategorytById(@PathVariable("id") Integer id) {
-        return categoryService.findById(id);
+    @GetMapping("/categories/{id}")
+    public ResponseEntity<?> getCategorytById(@PathVariable("id") Integer id) {
+    	if (categoryService.findById(id)==null) {
+    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found category");
+    	}
+        return ResponseEntity.ok(categoryService.findById(id));
     }
 
-    @PostMapping("/category")
-    public CategoryDTO createCategory(@RequestBody CategoryDTO category) {
-        return categoryService.create(category);
+    @PostMapping("admin/categories")
+    public ResponseEntity<?> createCategory(@RequestBody CategoryDTO category) {
+    	if (categoryService.findById(category.getIdCategory())!=null) {
+    		return ResponseEntity.badRequest().body("Category already exist");
+    	}
+        return ResponseEntity.ok(categoryService.create(category));
     }
 
-    @PostMapping("/category/{id}")
-    public CategoryDTO updateCategory(@RequestBody CategoryDTO category){
-        return categoryService.update(category);
+    @PutMapping("admin/categories")
+    public ResponseEntity<?> updateCategory(@RequestBody CategoryDTO category){
+    	if (categoryService.findById(category.getIdCategory())==null) {
+    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found category");
+    	}
+        return ResponseEntity.ok(categoryService.update(category));
     }
 
-    @DeleteMapping("/category")
-    public void deleteCategory(@PathVariable("id") List<Integer> id) {
+    @DeleteMapping("admin/categories/{id}")
+    public ResponseEntity<?> deleteCategory(@PathVariable("id") Integer id) {
+    	if (categoryService.findById(id)==null) {
+    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found category");
+    	}
         categoryService.remove(id);
+        return ResponseEntity.ok(id);
+    }
+    @DeleteMapping("admin/categories")
+    public ResponseEntity<?> deleteCategories(@RequestParam("id") List<Integer> id) {
+        categoryService.removeAll(id);
+        return ResponseEntity.ok().build();
     }
 }

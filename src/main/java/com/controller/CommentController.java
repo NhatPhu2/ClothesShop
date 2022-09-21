@@ -9,29 +9,30 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("api/v1")
+@CrossOrigin("*")
 public class CommentController {
 
     @Autowired
     CommentService commentService;
 
-    @PostMapping("/newcomment")
+    @PostMapping("/comments")
     public CommentDTO addComment(@RequestBody CommentDTO commentDTO){
         commentDTO.setCommentDate(new Date());
        return  commentService.create(commentDTO);
     }
 
-    @GetMapping("/show")
+    @GetMapping("/comments")
     public List<CommentDTO> showComment(@RequestParam Integer idProduct){
         return commentService.findAllByIdProduct(idProduct);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/comments/{id}")
     public void deleteComment(@PathVariable Integer id){
         commentService.remove(id);
     }
 
-    @PutMapping("update")
+    @PutMapping("/comments")
     public CommentDTO updateComment(){
         return null;
     }
