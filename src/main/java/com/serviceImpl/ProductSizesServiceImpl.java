@@ -2,7 +2,9 @@ package com.serviceImpl;
 
 import com.DAO.ProductSizesDAO;
 import com.DTO.ProductSizesDTO;
+import com.DTO.SizeDTO;
 import com.entity.ProductSizes;
+import com.entity.Size;
 import com.service.ProductSizesService;
 import com.utils.Convert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +61,15 @@ public class ProductSizesServiceImpl implements ProductSizesService {
         ProductSizes productSizes = productSizesDAO.findByIdProductColorsAndIdSize(idSize,idProductColor);
         ProductSizesDTO productSizesDTO = convert.toDto(productSizes,ProductSizesDTO.class);
         return productSizesDTO;
+    }
+
+    @Override
+    public List<SizeDTO> findByIdProductColor(Integer idProductColor){
+        List<Size> sizes = productSizesDAO.findByIdProductColor(idProductColor);
+        List<SizeDTO>  sizeDTOS= sizes.stream()
+                .map(size -> convert.toDto(size,SizeDTO.class))
+                .collect(Collectors.toList());
+        return sizeDTOS;
     }
 //    @Override
 //    public List<ProductDTO> findByIdSize(Integer idSize){

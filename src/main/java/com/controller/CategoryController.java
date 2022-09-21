@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@RequestMapping("/category")
+@RequestMapping("api/v1")
 @CrossOrigin("*")
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping("/category/all")
+    @GetMapping("/categories")
     public ResponseEntity<List<CategoryDTO>>  getAllCategory() {
         return ResponseEntity.ok(categoryService.findAll());
     }

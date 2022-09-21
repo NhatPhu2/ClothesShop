@@ -56,7 +56,7 @@ public class ProductController {
     	return ResponseEntity.ok(list);
     }
     
-    @GetMapping("/products/{idCategory}")
+    @GetMapping("/products/bycategory/{idCategory}")
     public ResponseEntity<List<ProductDTO>> showByIdCategory(@PathVariable Integer idCategory){
         return ResponseEntity.ok(productService.findAllByIdCategory(idCategory));
     }
@@ -66,10 +66,10 @@ public class ProductController {
         return productService.findById(id);
     }
 
-    @GetMapping("products/{idStyle}/{idCategory}")
+    @GetMapping("products/bystyle/{idCategory}/{idStyle}")
     public ResponseEntity<List<ProductDTO>> getAllProductByStyle(@PathVariable Integer idStyle,
                                                                  @PathVariable Integer idCategory){
-        return ResponseEntity.ok(productService.findAllProductByStyle(idStyle,idCategory));
+        return ResponseEntity.ok(productService.fillByIdCategoryAndIdStyle(idCategory,idStyle));
     }
 
     @PostMapping("/admin/products")

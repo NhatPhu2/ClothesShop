@@ -3,6 +3,7 @@ package com.DTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
@@ -11,6 +12,6 @@ import java.io.Serializable;
 public class SizeDTO implements Serializable {
     private Integer idSize;
 
-    @NotEmpty(message = "${Size.RoleDTO.nameRole}")
+    @NotBlank(message = "${NotBlank.RoleDTO.nameRole}")
     private String nameSize;
 }

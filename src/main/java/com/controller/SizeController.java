@@ -6,31 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/v1/size")
+@RequestMapping("/api/v1")
 public class SizeController {
     @Autowired
     SizeService sizeService;
 
-    @GetMapping
+    @GetMapping("sizes")
     public ResponseEntity<List<SizeDTO>> getAll(){
         return ResponseEntity.ok(sizeService.findAll());
     }
 
-    @PostMapping
-    public ResponseEntity<SizeDTO> createSize(@RequestBody SizeDTO size){
+    @PostMapping("sizes")
+    public ResponseEntity<SizeDTO> createSize(@Valid @RequestBody SizeDTO size){
         return ResponseEntity.ok(sizeService.create(size));
     }
 
-    @PutMapping
-    public ResponseEntity<SizeDTO> updateSize(@RequestBody SizeDTO size){
+    @PutMapping("sizes")
+    public ResponseEntity<SizeDTO> updateSize(@Valid @RequestBody SizeDTO size){
         return ResponseEntity.ok(sizeService.update(size));
     }
 
-    @DeleteMapping
+    @DeleteMapping("sizes")
     public ResponseEntity removeSize(@RequestBody List<Integer> id){
         sizeService.remove(id);
         return ResponseEntity.ok().build();

@@ -2,6 +2,7 @@ package com.DAO;
 
 import com.entity.Product;
 import com.entity.ProductSizes;
+import com.entity.Size;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,6 +22,7 @@ public interface ProductSizesDAO extends JpaRepository<ProductSizes,Integer> {
 
     @Query("select o from ProductSizes o where o.sizeProduct.idSize=?1 and o.productColors.idProductsColors=?2")
     ProductSizes findByIdProductColorsAndIdSize(Integer idSize, Integer idProductColor);
-
+    @Query("select  o.sizeProduct from ProductSizes o where o.productColors.idProductsColors=?1")
+    List<Size> findByIdProductColor(Integer idProductColor);
 
 }
