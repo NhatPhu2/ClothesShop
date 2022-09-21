@@ -1,15 +1,16 @@
 package com.controller;
 
+import com.DTO.ColorDTO;
 import com.DTO.ProductColorsDTO;
+import com.DTO.SizeDTO;
 import com.service.ProductColorsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,21 +23,39 @@ public class ProductColorsController {
     ProductColorsService productColorsService;
 
 
-    @GetMapping("productcolor/show/detail/{idProduct}/{idColor}")
+    @GetMapping("productcolor/detail/{idProduct}/{idColor}")
     public ResponseEntity<ProductColorsDTO>  detailColorProduct(@PathVariable Integer idProduct,
-                                                                @PathVariable Optional<Integer>  idColor){
-        ProductColorsDTO productColorsDTO = productColorsService.findByIdColorAndIdProduct(idColor.orElse(1),idProduct);
+                                                                @PathVariable Integer  idColor){
+        ProductColorsDTO productColorsDTO = productColorsService.findByIdColorAndIdProduct(idColor,idProduct);
         return ResponseEntity.ok(productColorsDTO);
     }
 
-    @GetMapping("productcolor/show/allcolor/{idProduct}")
-    public ResponseEntity<List<ProductColorsDTO>> getAllColorOfProduct(@PathVariable Integer idProduct){
-        return ResponseEntity.ok(productColorsService.findByIdProduct(idProduct));
+
+    @GetMapping("productcolor/{idColor}")
+    public ResponseEntity<List<ProductColorsDTO>> getAllProductByColor(@PathVariable Integer idColor){
+        return ResponseEntity.ok(productColorsService.findByColor(idColor));
     }
 
-    @GetMapping("productcolor/show/byidcolor/{idColor}")
-    public ResponseEntity<List<ProductColorsDTO>> getAllProductByColor(@PathVariable Integer idColor){
-        return ResponseEntity.ok(productColorsService.findByIdColor(idColor));
+    @PostMapping("admin/productcolor")
+    public ResponseEntity<ProductColorsDTO> addNewProductColor(@Valid @RequestBody ProductColorsDTO productColorsDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(productColorsService.create(productColorsDTO));
+    }
+
+    @PutMapping("admin/productcolor")
+    public ResponseEntity<ProductColorsDTO> updateProductColor(@Valid @RequestBody ProductColorsDTO productColorsDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(productColorsService.create(productColorsDTO));
+    }
+
+    @DeleteMapping("admin/productcolor/{idProductColor}")
+    public ResponseEntity deleteProductColor(@PathVariable Integer idProductColor){
+        productColorsService.remove(idProductColor);
+        return ResponseEntity.ok().build();
+    }
+
+
+    @GetMapping("colors/byproduct/{idProduct}")
+    public List<ColorDTO> getColorsByIdProduct(@PathVariable Integer idProduct){
+        return productColorsService.findByIdProduct(idProduct);
     }
 
 }

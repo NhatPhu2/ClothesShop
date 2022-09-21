@@ -14,4 +14,6 @@ public interface ProductStyleDAO extends JpaRepository<ProductStyle,Integer> {
     List<ProductStyle> findAllByIdCategory(Integer idCategory);
 
 
+
+
 }

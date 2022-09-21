@@ -1,6 +1,8 @@
 package com.service;
 
+import com.DTO.ColorDTO;
 import com.DTO.ProductColorsDTO;
+import com.entity.Color;
 
 import java.util.List;
 
@@ -10,11 +12,11 @@ public interface ProductColorsService {
 
     ProductColorsDTO findByIdColorAndIdProduct(Integer idColor, Integer idProduct);
 
-    void create(ProductColorsDTO ProductColorsDto);
-    void update(ProductColorsDTO ProductColorsDto);
+    ProductColorsDTO create(ProductColorsDTO ProductColorsDto);
+    ProductColorsDTO update(ProductColorsDTO ProductColorsDto);
     void remove(Integer id);
 
-    List<ProductColorsDTO> findByIdColor(Integer idColor);
+    List<ColorDTO> findByIdProduct(Integer idProduct);
 
-    List<ProductColorsDTO> findByIdProduct(Integer idProduct);
+    List<ProductColorsDTO> findByColor(Integer idColor);
 }

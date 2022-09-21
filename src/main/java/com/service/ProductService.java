@@ -13,5 +13,6 @@ public interface ProductService {
     List<ProductDTO> findAllByIdCategory(Integer idCategory);
     List<ProductDTO> page(int size, int page);
 
-    List<ProductDTO> findAllProductByStyle(Integer idStyle, Integer idCategory);
+
+    List<ProductDTO> fillByIdCategoryAndIdStyle(Integer idCategory, Integer idProductStyle);
 }
