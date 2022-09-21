@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
+
+
 @Validated
 @RequestMapping("api/v1")
 public class ProductController {
@@ -37,6 +39,7 @@ public class ProductController {
 
     @Autowired
     ProductSizesService productSizesService;
+
 
     @GetMapping("/products")
     public ResponseEntity<List<ProductDTO>>  getAllProducts() {
@@ -66,7 +69,12 @@ public class ProductController {
         return productService.findById(id);
     }
 
-    @GetMapping("products/bystyle/{idCategory}/{idStyle}")
+    @PutMapping("/admin/products")
+    public ProductDTO updateProduct(@RequestBody ProductDTO product){
+        return productService.update(product);
+    }
+
+    @GetMapping("products/bystyle/{idStyle}/{idCategory}")
     public ResponseEntity<List<ProductDTO>> getAllProductByStyle(@PathVariable Integer idStyle,
                                                                  @PathVariable Integer idCategory){
         return ResponseEntity.ok(productService.fillByIdCategoryAndIdStyle(idCategory,idStyle));
@@ -76,7 +84,6 @@ public class ProductController {
     public ResponseEntity<ProductDTO> addNewProduct(@Valid @RequestBody ProductDTO productDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.create(productDTO));
     }
-
 
     @DeleteMapping("/admin/product/{idProduct}")
     public void deleteProduct(@PathVariable @NotNull(message = "Vui lòng chọn ít nhất 1 sản phẩm để xóa")
