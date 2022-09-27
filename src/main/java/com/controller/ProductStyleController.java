@@ -16,7 +16,7 @@ public class ProductStyleController {
     @Autowired
     ProductStyleService productStyleService;
 
-    @GetMapping("product-style/show/{idCategory}")
+    @GetMapping("user/productstyle/show/{idCategory}")
     public ResponseEntity<List<ProductStyleDTO>> showAll(@PathVariable Integer idCategory){
       return  ResponseEntity.ok(productStyleService.findAllByIdCategory(idCategory));
     }

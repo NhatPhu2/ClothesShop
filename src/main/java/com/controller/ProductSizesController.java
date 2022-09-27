@@ -36,9 +36,9 @@ public class ProductSizesController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("size/{idProductColor}")
-    public List<SizeDTO> getSizesByIdProduct(@PathVariable Integer idProductColor){
-        return productSizesService.findByIdProductColor(idProductColor);
+    @GetMapping("user/size/{idProductColor}")
+    public ResponseEntity<List<SizeDTO>>  getSizesByIdProduct(@PathVariable Integer idProductColor){
+        return ResponseEntity.ok(productSizesService.findByIdProductColor(idProductColor));
     }
 
 }

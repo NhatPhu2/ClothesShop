@@ -1,11 +1,13 @@
 package com.service;
 
 import com.DTO.ProductDTO;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductService {
-    List<ProductDTO> findAll();
+    Map<String,Object> findAll(Integer page, Integer size);
     ProductDTO findById(Integer id);
     ProductDTO create(ProductDTO ProductDto);
     ProductDTO update(ProductDTO ProductDto);
@@ -15,4 +17,6 @@ public interface ProductService {
 
 
     List<ProductDTO> fillByIdCategoryAndIdStyle(Integer idCategory, Integer idProductStyle);
+
+    List<ProductDTO> findAllByNameProduct(String nameProduct);
 }

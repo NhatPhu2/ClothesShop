@@ -23,7 +23,7 @@ public class ProductColorsController {
     ProductColorsService productColorsService;
 
 
-    @GetMapping("productcolor/detail/{idProduct}/{idColor}")
+    @GetMapping("user/productcolor/detail/{idProduct}/{idColor}")
     public ResponseEntity<ProductColorsDTO>  detailColorProduct(@PathVariable Integer idProduct,
                                                                 @PathVariable Integer  idColor){
         ProductColorsDTO productColorsDTO = productColorsService.findByIdColorAndIdProduct(idColor,idProduct);
@@ -31,7 +31,7 @@ public class ProductColorsController {
     }
 
 
-    @GetMapping("productcolor/{idColor}")
+    @GetMapping("user/productcolor/{idColor}")
     public ResponseEntity<List<ProductColorsDTO>> getAllProductByColor(@PathVariable Integer idColor){
         return ResponseEntity.ok(productColorsService.findByColor(idColor));
     }
@@ -53,9 +53,14 @@ public class ProductColorsController {
     }
 
 
-    @GetMapping("colors/byproduct/{idProduct}")
-    public List<ColorDTO> getColorsByIdProduct(@PathVariable Integer idProduct){
-        return productColorsService.findByIdProduct(idProduct);
+    @GetMapping("user/colors/byproduct/{idProduct}")
+    public ResponseEntity<List<ColorDTO>>  getColorsByIdProduct(@PathVariable Integer idProduct){
+        return ResponseEntity.ok(productColorsService.findByIdProduct(idProduct));
+    }
+
+    @GetMapping("user/productcolor/bysize/{idSize}")
+    public ResponseEntity<List<ProductColorsDTO>> getProductColorBySize(@PathVariable  Integer idSize){
+        return ResponseEntity.ok(productColorsService.fillBySize(idSize));
     }
 
 }

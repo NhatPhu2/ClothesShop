@@ -15,17 +15,13 @@ public class FileController {
 	@Autowired
 	private FileService fileService;
 
-	@PostMapping("/upload")
-	public ResponseEntity<Object> upload(@RequestParam("file") MultipartFile multipartFile) {
+	@PostMapping("admin/upload")
+	public ResponseEntity<Object> upload(@RequestPart("file") MultipartFile multipartFile) {
 		return ResponseEntity.ok(fileService.upload(multipartFile));
 	}
 
-//		@PostMapping("/googleDrive/upload")
-//	public ResponseEntity<> uploadGoogle(@RequestPart("file") MultipartFile multipartFile){
-//
-//		}
 
-	@DeleteMapping("files/{url}")
+	@DeleteMapping("admin/files/{url}")
 	public ResponseEntity<?> delete(@PathVariable("url") String url) {
 		try {
 			if (fileService.delete(url) == true)

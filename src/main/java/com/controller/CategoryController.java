@@ -10,37 +10,39 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
 @RequestMapping("api/v1")
 @CrossOrigin("*")
+@RestController
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping("/categories")
+    @GetMapping("user/categories")
     public ResponseEntity<List<CategoryDTO>>  getAllCategory() {
         return ResponseEntity.ok(categoryService.findAll());
     }
 
-    @GetMapping("/categories/{id}")
-    public ResponseEntity<?> getCategorytById(@PathVariable("id") Integer id) {
+    @GetMapping("/user/categories/byid/{id}")
+    public ResponseEntity<?> getCategoryById(@PathVariable("id") Integer id) {
     	if (categoryService.findById(id)==null) {
     		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found category");
     	}
         return ResponseEntity.ok(categoryService.findById(id));
     }
 
-    @PostMapping("admin/categories")
-    public ResponseEntity<?> createCategory(@RequestBody CategoryDTO category) {
+    @PostMapping("/admin/categories")
+    public ResponseEntity<?> createCategory(@Valid @RequestBody CategoryDTO category) {
     	if (categoryService.findById(category.getIdCategory())!=null) {
     		return ResponseEntity.badRequest().body("Category already exist");
     	}
         return ResponseEntity.ok(categoryService.create(category));
     }
 
-    @PutMapping("admin/categories")
+    @PutMapping("/admin/categories")
     public ResponseEntity<?> updateCategory(@RequestBody CategoryDTO category){
     	if (categoryService.findById(category.getIdCategory())==null) {
     		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found category");

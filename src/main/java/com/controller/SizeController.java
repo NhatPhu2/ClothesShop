@@ -16,22 +16,22 @@ public class SizeController {
     @Autowired
     SizeService sizeService;
 
-    @GetMapping("sizes")
+    @GetMapping("user/sizes")
     public ResponseEntity<List<SizeDTO>> getAll(){
         return ResponseEntity.ok(sizeService.findAll());
     }
 
-    @PostMapping("sizes")
+    @PostMapping("admin/sizes")
     public ResponseEntity<SizeDTO> createSize(@Valid @RequestBody SizeDTO size){
         return ResponseEntity.ok(sizeService.create(size));
     }
 
-    @PutMapping("sizes")
+    @PutMapping("admin/sizes")
     public ResponseEntity<SizeDTO> updateSize(@Valid @RequestBody SizeDTO size){
         return ResponseEntity.ok(sizeService.update(size));
     }
 
-    @DeleteMapping("sizes")
+    @DeleteMapping("admin/sizes")
     public ResponseEntity removeSize(@RequestBody List<Integer> id){
         sizeService.remove(id);
         return ResponseEntity.ok().build();

@@ -16,23 +16,23 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
-    @PostMapping("/comments")
+    @PostMapping("user/comments")
     public CommentDTO addComment(@RequestBody CommentDTO commentDTO){
         commentDTO.setCommentDate(new Date());
        return  commentService.create(commentDTO);
     }
 
-    @GetMapping("/comments")
+    @GetMapping("user/comments")
     public List<CommentDTO> showComment(@RequestParam Integer idProduct){
         return commentService.findAllByIdProduct(idProduct);
     }
 
-    @DeleteMapping("/comments/{id}")
+    @DeleteMapping("user/comments/{id}")
     public void deleteComment(@PathVariable Integer id){
         commentService.remove(id);
     }
 
-    @PutMapping("/comments")
+    @PutMapping("user/comments")
     public CommentDTO updateComment(){
         return null;
     }

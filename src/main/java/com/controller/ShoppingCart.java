@@ -5,6 +5,7 @@ import com.DTO.*;
 
 import com.pojo.Cart;
 import com.service.*;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,29 +21,24 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/v1")
-@Validated
+@Validated @RequiredArgsConstructor
 public class ShoppingCart {
+    private final ProductColorsService productColorsService;
 
-    @Autowired
-    ProductColorsService productColorsService;
+    private final SizeService sizeService;
 
-    @Autowired
-    SizeService sizeService;
+    private final OrdersService ordersService;
 
-    @Autowired
-    OrdersService ordersService;
+    private final ProductSizesService productSizesService;
 
-    @Autowired
-    ProductSizesService productSizesService;
-
-    @Autowired
-    OrderDetailService orderDetailService;
+    private final OrderDetailService orderDetailService;
 
     @PostMapping("user/cart/{id}/{idSize}/{idColor}")
     public ResponseEntity<Map<String, Cart>> addCart(@PathVariable("id") Integer idProduct,
                                                  @PathVariable("idSize") @Min(value = 1, message = "{NotNull.ProductSizesDTO.idSize}") Integer idSize,
                                                  @PathVariable("idColor") @Min(value = 1 , message = "{NotNull.ProductColorsDTO.idColor}") Integer idColor,
-                                                 @RequestBody Optional<Map<String, Cart>> existCart) {
+                                                 @RequestBody(required = false) Optional<Map<String, Cart>> existCart) {
+
         //nếu chưa có sản phẩm trong giỏ thì tạo mới
         Map<String, Cart> carts = existCart.orElse(new HashMap<>());
         String key = idProduct + "/" + idSize + "/" + idColor;
@@ -73,6 +69,7 @@ public class ShoppingCart {
         OrdersDTO ordersDTO = new OrdersDTO();
         ordersDTO.setAddress(address);
         ordersDTO.setCreateDate(new Date());
+        ordersDTO.setUsername("");
         Integer idOder = ordersService.create(ordersDTO).getIdOrder();//thêm vào bảng hóa đơn và trả về id hóa đơn
         //-----------------------------
         OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
@@ -83,7 +80,7 @@ public class ShoppingCart {
             productSizesService.update(productSizesDTO);
             //thanh toán và trả về hóa đơn chi tiết cho người dùng
             orderDetailDTO.setQuantity(valueCart.getQuantity());
-            orderDetailDTO.setAmount(valueCart.getQuantity() * valueCart.getPriceProduct());
+            orderDetailDTO.setAmount(valueCart.getAmount());
             orderDetailDTO.setIdProduct(valueCart.getIdProduct());
             orderDetailDTO.setColorName(valueCart.getNameColor());
             orderDetailDTO.setSizeName(valueCart.getNameSize());
