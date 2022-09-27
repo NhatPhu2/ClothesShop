@@ -5,6 +5,7 @@ import com.DTO.ProductColorsDTO;
 import com.DTO.ProductDTO;
 import com.DTO.ProductSizesDTO;
 import com.entity.ProductSizes;
+import com.google.api.gax.rpc.NotFoundException;
 import com.service.FileService;
 import com.service.ProductColorsService;
 import com.service.ProductService;
@@ -97,12 +98,13 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.create(productDTO));
     }
 
-    //xóa nhiều sản phẩm
-    @DeleteMapping("/admin/product/{idProduct}")
-    public void deleteProduct(@PathVariable @NotNull(message = "Vui lòng chọn ít nhất 1 sản phẩm để xóa")
-                              List<Integer> idProduct) {
+
+
+    @DeleteMapping("/admin/products")
+    public void deleteProduct(@RequestParam @NotNull(message = "Vui lòng chọn ít nhất 1 sản phẩm để xóa")
+                                  List<Integer> idProduct){
         productService.remove(idProduct);
     }
-
+    
 }
 
