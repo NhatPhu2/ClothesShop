@@ -19,4 +19,6 @@ public interface ProductColorsService {
     List<ColorDTO> findByIdProduct(Integer idProduct);
 
     List<ProductColorsDTO> findByColor(Integer idColor);
+
+    List<ProductColorsDTO> fillBySize(Integer idSize);
 }

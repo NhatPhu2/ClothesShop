@@ -7,6 +7,7 @@ import com.entity.ProductSizes;
 import com.entity.Size;
 import com.service.ProductSizesService;
 import com.utils.Convert;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,14 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ProductSizesServiceImpl implements ProductSizesService {
-
-    @Autowired
-    ProductSizesDAO productSizesDAO;
-
-    @Autowired
-    Convert convert;
+    private final ProductSizesDAO productSizesDAO;
+    private final Convert convert;
 
     @Override
     public List<ProductSizesDTO> findAll() {

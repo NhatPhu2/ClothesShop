@@ -1,6 +1,7 @@
 package com.DAO;
 
 import com.entity.Product;
+import com.entity.ProductColors;
 import com.entity.ProductSizes;
 import com.entity.Size;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,5 +25,6 @@ public interface ProductSizesDAO extends JpaRepository<ProductSizes,Integer> {
     ProductSizes findByIdProductColorsAndIdSize(Integer idSize, Integer idProductColor);
     @Query("select  o.sizeProduct from ProductSizes o where o.productColors.idProductsColors=?1")
     List<Size> findByIdProductColor(Integer idProductColor);
+
 
 }

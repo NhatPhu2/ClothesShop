@@ -11,11 +11,19 @@ public class Cart {
     private Integer idSize;
     private String nameSize;
     private Integer idProductsColors;
+    private double amount;
 
 
     public Cart() {
     }
 
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 
     public Integer getIdProductsColors() {
         return idProductsColors;

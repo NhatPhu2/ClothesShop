@@ -1,5 +1,6 @@
 package com.utils;
 
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -7,9 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import java.lang.reflect.Type;
 
 @Configuration
+@RequiredArgsConstructor
 public class Convert {
-    @Autowired
-    ModelMapper modelMapper;
+
+    private final ModelMapper modelMapper;
     public <E,EDTO> EDTO toDto(E entity, Class<EDTO> DTOClass) {
         EDTO DTO = modelMapper.map(entity, DTOClass);
         return DTO;

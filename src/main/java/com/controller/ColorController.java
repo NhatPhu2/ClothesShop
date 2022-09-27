@@ -16,22 +16,22 @@ public class ColorController {
     @Autowired
     ColorService colorService;
 
-    @GetMapping("colors")
+    @GetMapping("user/colors")
     public ResponseEntity<List<ColorDTO>> getAll(){
         return ResponseEntity.ok(colorService.findAll());
     }
 
-    @PostMapping("colors")
+    @PostMapping("admin/colors")
     public ResponseEntity<ColorDTO> createColor(@Valid @RequestBody ColorDTO colorDTO){
         return ResponseEntity.ok(colorService.create(colorDTO));
     }
 
-    @PutMapping("colors")
+    @PutMapping("admin/colors")
     public ResponseEntity<ColorDTO> updateColor(@Valid @RequestBody ColorDTO colorDTO){
         return ResponseEntity.ok(colorService.create(colorDTO));
     }
 
-    @DeleteMapping("colors")
+    @DeleteMapping("admin/colors")
     public ResponseEntity deleteColor(@RequestBody List<Integer> id){
         colorService.remove(id);
         return ResponseEntity.ok().build();

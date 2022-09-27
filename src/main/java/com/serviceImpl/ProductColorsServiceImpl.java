@@ -75,7 +75,15 @@ public class ProductColorsServiceImpl implements ProductColorsService {
     @Override
     public List<ProductColorsDTO> findByColor(Integer idColor) {
         List<ProductColors> productColors = productColorsDAO.fillByColor(idColor);
-        System.out.println(productColors.size());
+        List<ProductColorsDTO> ProductColorsDTO= productColors.stream()
+                .map(productColor -> convert.toDto(productColor, ProductColorsDTO.class))
+                .collect(Collectors.toList());
+        return ProductColorsDTO;
+    }
+
+    @Override
+    public List<ProductColorsDTO> fillBySize(Integer idSize) {
+        List<ProductColors> productColors = productColorsDAO.fillBySize(idSize);
         List<ProductColorsDTO> ProductColorsDTO= productColors.stream()
                 .map(productColor -> convert.toDto(productColor, ProductColorsDTO.class))
                 .collect(Collectors.toList());

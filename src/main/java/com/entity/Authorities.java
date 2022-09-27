@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Authorities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idAuthorities;
+    private Long idAuthorities;
     @ManyToOne @JoinColumn(name ="username")
     private Account authorityAccount;
     @ManyToOne @JoinColumn(name ="idRole")

@@ -5,33 +5,39 @@ import com.DTO.ProductDTO;
 import com.entity.Product;
 import com.service.ProductService;
 import com.utils.Convert;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-@Service
+@Service @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
-    @Autowired
-    ProductDAO productDAO;
+    private final ProductDAO productDAO;
+    private final Convert convert;
 
-    @Autowired
-    Convert convert;
-
-    @Override
-    public List<ProductDTO> findAll() {
-        List<Product> listProduct = productDAO.findAll();
+    @Override //findAllAnd Pagination
+    public Map<String,Object> findAll(Integer page,Integer size) {
+        Map<String,Object> products = new HashMap<>();
+        Pageable pageable = PageRequest.of(page,size);
+        Page<Product> listProduct = productDAO.findAll(pageable);
         List<ProductDTO> listProductDTO = listProduct.stream().
                 map(product -> convert.toDto(product, ProductDTO.class))
                 .collect(Collectors.toList());
-        return listProductDTO;
-
+        products.put("products",listProductDTO);
+        products.put("totalPages",listProduct.getTotalPages());
+        products.put("currentPage",listProduct.getNumber());
+        products.put("first",listProduct.isFirst());
+        products.put("last",listProduct.isLast());
+        return products;
     }
 
     @Override
@@ -82,6 +88,15 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = productDAO.findByIdCategoryAndIdProductStyle(idCategory,idProductStyle);
         List<ProductDTO> productDTOS = products.stream()
                 .map(product -> convert.toDto(product,ProductDTO.class))
+                .collect(Collectors.toList());
+        return productDTOS;
+    }
+
+    @Override
+    public List<ProductDTO> findAllByNameProduct(String nameProduct){
+        List<Product> products = productDAO.findAllByNameProductLike("%"+nameProduct+"%");
+        List<com.DTO.ProductDTO> productDTOS = products.stream()
+                .map(product -> convert.toDto(product, com.DTO.ProductDTO.class))
                 .collect(Collectors.toList());
         return productDTOS;
     }

@@ -23,6 +23,8 @@ public class FileServiceImpl implements FileService {
 
     private String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/clothesshop-1e4f2.appspot.com/o/%s?alt=media";
 
+    
+    
     private String uploadFile(File file, String fileName) throws IOException {
         BlobId blobId = BlobId.of("clothesshop-1e4f2.appspot.com", fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
@@ -31,6 +33,7 @@ public class FileServiceImpl implements FileService {
                 setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream())).
                 setProjectId("springboot-mall").build().getService();
         storage.create(blobInfo, Files.readAllBytes(file.toPath()));
+       
         return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
     }
 
@@ -51,11 +54,11 @@ public class FileServiceImpl implements FileService {
     public Object upload(MultipartFile multipartFile) {
         try {
             String fileName = multipartFile.getOriginalFilename();                        // to get original file name
-            fileName = UUID.randomUUID().toString().concat(this.getExtension(fileName));  // to generated random string values for file name.
+            				// to generated random string values for file name.
             File file = this.convertToFile(multipartFile, fileName);                      // to convert multipartFile to File
             String TEMP_URL = this.uploadFile(file, fileName);                                   // to get uploaded file link
             file.delete();                                                                // to delete the copy of uploaded file stored in the project folder
-            return TEMP_URL;                     // Your customized response
+            return fileName;                     // Your customized response
         } catch (Exception e) {
             e.printStackTrace();
             return "Unsuccessfully Uploaded!";
@@ -74,4 +77,17 @@ public class FileServiceImpl implements FileService {
         blob.downloadTo(Paths.get(destFilePath));
         return "Successfully Downloaded!";
     }
+
+	@Override
+	public boolean delete(String fileName) throws IOException {
+		// TODO Auto-generated method stub
+	    	 BlobId blobId = BlobId.of("clothesshop-1e4f2.appspot.com", fileName);
+	         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
+	         ClassPathResource serviceAccount = new ClassPathResource("clothesshop-1e4f2-firebase-adminsdk-go941-099ddf72d7.json");
+	       
+	    	Storage storage = StorageOptions.newBuilder().
+	                setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream())).
+	                setProjectId("springboot-mall").build().getService();
+	    	return storage.delete(blobId);
+	}
 }
