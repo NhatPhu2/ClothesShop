@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FavoriteDAO extends JpaRepository<Favorite,Integer> {
 	
-//	@Query("select f  from  Favorite f where f.favoriteProduct = ?1 and f.favoriteCustomer = ?2")
-//	Favorite findByCustomerAndProduct(Product p, Customer c);
+    @Query("select count(o) > 0 from Favorite o where o.product.idProduct=?1 and o.account.idUsername=?2")
+    boolean checkExistsByIdProductAndUserName(Integer idProduct,String idUsername);
 }

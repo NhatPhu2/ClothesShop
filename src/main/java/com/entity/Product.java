@@ -37,10 +37,10 @@ public class Product {
     @ManyToOne @JoinColumn(name = "idproductstyle")
     private ProductStyle productStyle;
 
-    @OneToMany(mappedBy = "favoriteProduct",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     List<Favorite> favorites;
 
-    @OneToMany(mappedBy = "commentProduct",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     List<Comment> comments;
 
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)

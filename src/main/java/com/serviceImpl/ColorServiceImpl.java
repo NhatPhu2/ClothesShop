@@ -5,18 +5,19 @@ import com.DTO.ColorDTO;
 import com.entity.Color;
 import com.service.ColorService;
 import com.utils.Convert;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
+@RequiredArgsConstructor
 public class ColorServiceImpl implements ColorService {
-    @Autowired
-    ColorDAO colorDao;
-    @Autowired
-    Convert convert;
+    private final ColorDAO colorDao;
+    private final Convert convert;
     @Override
     public List<ColorDTO> findAll() {
         List<Color> colors = colorDao.findAll();
@@ -30,17 +31,17 @@ public class ColorServiceImpl implements ColorService {
         return convert.toDto(colorDao.findById(id), ColorDTO.class);
     }
 
-    @Override
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public ColorDTO create(ColorDTO ColorDto) {
         return convert.toDto(colorDao.save(convert.toEntity(ColorDto, Color.class)), ColorDTO.class);
     }
 
-    @Override
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public ColorDTO update(ColorDTO ColorDto) {
         return convert.toDto(colorDao.save(convert.toEntity(ColorDto, Color.class)), ColorDTO.class);
     }
 
-    @Override
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public void remove(List<Integer> id) {
         colorDao.deleteAllById(id);
     }

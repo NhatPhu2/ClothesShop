@@ -5,6 +5,7 @@ import com.DTO.ProductStyleDTO;
 import com.entity.ProductStyle;
 import com.service.ProductStyleService;
 import com.utils.Convert;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +14,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProductStyleServiceImpl implements ProductStyleService {
-    @Autowired
-    ProductStyleDAO productStyleDAO;
 
-    @Autowired
-    Convert convert;
+    private final ProductStyleDAO productStyleDAO;
+
+
+    private final Convert convert;
 
     @Override
     public List<ProductStyleDTO> findAll() {

@@ -21,9 +21,9 @@ public interface ProductSizesDAO extends JpaRepository<ProductSizes,Integer> {
 //    @Query("select  o.product from ProductSizes o where o.sizeProduct.idSize=?1")
 //    List<Product> findByIdSize(Integer idSize);
 
-    @Query("select o from ProductSizes o where o.sizeProduct.idSize=?1 and o.productColors.idProductsColors=?2")
+    @Query("select o from ProductSizes o where o.size.idSize=?1 and o.productColors.idProductsColors=?2")
     ProductSizes findByIdProductColorsAndIdSize(Integer idSize, Integer idProductColor);
-    @Query("select  o.sizeProduct from ProductSizes o where o.productColors.idProductsColors=?1")
+    @Query("select  o.size from ProductSizes o where o.productColors.idProductsColors=?1")
     List<Size> findByIdProductColor(Integer idProductColor);
 
 

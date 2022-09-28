@@ -6,19 +6,21 @@ import com.entity.OrderDetail;
 import com.entity.ReportBestSellingProduct;
 import com.service.OrderDetailService;
 import com.utils.Convert;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 @Service
+@RequiredArgsConstructor
 public class OrderDetailServiceImpl implements OrderDetailService {
 
-    @Autowired
-    OrderDetailDAO orderDetailDAO;
 
-    @Autowired
-    Convert convert;
+    private final OrderDetailDAO orderDetailDAO;
+
+
+    private final Convert convert;
     @Override
     public List<OrderDetailDTO> findAll() {
         return null;

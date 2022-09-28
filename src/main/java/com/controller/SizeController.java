@@ -2,6 +2,7 @@ package com.controller;
 
 import com.DTO.SizeDTO;
 import com.service.SizeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,10 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class SizeController {
-    @Autowired
-    SizeService sizeService;
+
+    private final SizeService sizeService;
 
     @GetMapping("user/sizes")
     public ResponseEntity<List<SizeDTO>> getAll(){

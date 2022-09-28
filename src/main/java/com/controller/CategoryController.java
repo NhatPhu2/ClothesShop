@@ -5,6 +5,7 @@ package com.controller;
 import com.DTO.CategoryDTO;
 import com.DTO.ProductDTO;
 import com.service.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,9 @@ import java.util.List;
 @RequestMapping("api/v1")
 @CrossOrigin("*")
 @RestController
+@RequiredArgsConstructor
 public class CategoryController {
-    @Autowired
-    CategoryService categoryService;
+    private final CategoryService categoryService;
 
     @GetMapping("user/categories")
     public ResponseEntity<List<CategoryDTO>>  getAllCategory() {

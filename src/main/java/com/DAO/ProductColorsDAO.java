@@ -20,6 +20,6 @@ public interface ProductColorsDAO extends JpaRepository<ProductColors,Integer> {
     @Query("select o from ProductColors o where o.colorProduct.idColor=?1")
     List<ProductColors> fillByColor(Integer idColor);
 
-    @Query("select o.productColors from ProductSizes  o where o.sizeProduct.idSize=?1")
+    @Query("select o.productColors from ProductSizes  o where o.size.idSize=?1")
     List<ProductColors> fillBySize(Integer idSize);
 }

@@ -99,7 +99,6 @@ public class ProductController {
     }
 
 
-
     @DeleteMapping("/admin/products")
     public void deleteProduct(@RequestParam @NotNull(message = "Vui lòng chọn ít nhất 1 sản phẩm để xóa")
                                   List<Integer> idProduct){

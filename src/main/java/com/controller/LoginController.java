@@ -44,7 +44,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class LoginController {
     private final AuthenticationManager authenticationManager;
     private final AccountService accountService;
-
     private final PasswordEncoder passwordEncoder;
     @PostMapping("/login")
     public ResponseEntity<?> login (@Valid @RequestBody LoginRequest loginRequest){
@@ -83,44 +82,44 @@ public class LoginController {
     }
 
 
-//    @GetMapping("token/refresh")
-//    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//            //lấy header authorization
-//            String authorizationHeader = request.getHeader(AUTHORIZATION);
-//            if(authorizationHeader !=null && authorizationHeader.startsWith("Bearer ")){
-//                try{
-//                    String refresh_token = authorizationHeader.substring("Bearer ".length());// lấy token
-//                    Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
-//                    JWTVerifier verifier = JWT.require(algorithm).build();
-//
-//                    DecodedJWT decodedJWT = verifier.verify(refresh_token);
-//
-//                    String username = decodedJWT.getSubject();
-//                    Account user = accountService.getUser(username);
-//
-//                    // tạo access token
-//                    String access_token = JWT.create().withSubject(user.getUsername())
-//                            .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
+    @GetMapping("token/refresh")
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+            //lấy header authorization
+            String authorizationHeader = request.getHeader(AUTHORIZATION);
+            if(authorizationHeader !=null && authorizationHeader.startsWith("Bearer ")){
+                try{
+                    String refresh_token = authorizationHeader.substring("Bearer ".length());// lấy refresh token
+                    Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+                    JWTVerifier verifier = JWT.require(algorithm).build();
+
+                    DecodedJWT decodedJWT = verifier.verify(refresh_token);
+
+                    String username = decodedJWT.getSubject();
+                    Account user = accountService.getUser(username);
+
+                    // tạo access token
+                    String access_token = JWT.create().withSubject(user.getIdUsername())
+                            .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
 //                            .withIssuer(request.getRequestURL().toString())
-//                            .withClaim("roles",user.getAuthorities().stream().map(role -> role.getAuthorityRole()).collect(Collectors.toList()))
-//                            .sign(algorithm);
-//
-//                    Map<String,String> tokens = new HashMap<>();
-//                    tokens.put("access_token",access_token);
-//                    tokens.put("refresh_token",refresh_token);
-//                    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-//                    new ObjectMapper().writeValue(response.getOutputStream(),tokens);//trả về tokens cho người dùng
-//                }catch(Exception e){
-//                    response.setStatus(FORBIDDEN.value());
-//                    //response.sendError(FORBIDDEN.value());
-//                    Map<String,String> error = new HashMap<>();
-//                    error.put("error_message",e.getMessage());
-//                    response.setContentType(APPLICATION_JSON_VALUE);
-//                    new ObjectMapper().writeValue(response.getOutputStream(),error);//trả về tokens cho người dùng
-//                }
-//            }else
-//                throw new RuntimeException();
-//
-//    }
+                            .withClaim("roles",user.getAuthorities().stream().map(role -> role.getAuthorityRole().getIdRole()).collect(Collectors.toList()))
+                            .sign(algorithm);
+
+                    Map<String,String> tokens = new HashMap<>();
+                    tokens.put("access_token",access_token);
+                    tokens.put("refresh_token",refresh_token);
+                    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                    new ObjectMapper().writeValue(response.getOutputStream(),tokens);//trả về tokens cho người dùng
+                }catch(Exception e){
+                    response.setStatus(FORBIDDEN.value());
+                    //response.sendError(FORBIDDEN.value());
+                    Map<String,String> error = new HashMap<>();
+                    error.put("error_message",e.getMessage());
+                    response.setContentType(APPLICATION_JSON_VALUE);
+                    new ObjectMapper().writeValue(response.getOutputStream(),error);//trả về tokens cho người dùng
+                }
+            }else
+                throw new RuntimeException();
+
+    }
 }
 

@@ -10,7 +10,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class OrdersDTO implements Serializable {
     private Integer idOrder;
-    private Date createDate;
     private String address;
-    private String username;
+    private String idUsernameAccount;
 }

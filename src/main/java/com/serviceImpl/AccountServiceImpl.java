@@ -81,6 +81,6 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
             // Tạo UserDetails từ Account
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
             account.getAuthorities().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getAuthorityRole().getIdRole())));
-            return new User(account.getUsername(),passwordEncoder.encode(account.getPassword())  , authorities);
+            return new User(account.getIdUsername(),passwordEncoder.encode(account.getPassword())  , authorities);
     }
 }

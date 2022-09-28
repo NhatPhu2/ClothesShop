@@ -28,10 +28,6 @@ public class FavoriteServiceImpl implements FavoriteService {
 	
 	private final FavoriteDAO favoriteDAO;
 
-//	private final CustomerDAO customerDAO;
-
-	private final ProductDAO productDAO;
-
 	private final Convert convert;
 
     @Override
@@ -44,36 +40,25 @@ public class FavoriteServiceImpl implements FavoriteService {
         return null;
     }
 
-    @Override
-    public void create(FavoriteDTO FavoriteDto) {
-
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
+    public FavoriteDTO create(FavoriteDTO favoriteDto) {
+        Favorite favorite = convert.toEntity(favoriteDto,Favorite.class);
+        FavoriteDTO favoriteDTO = convert.toDto(favoriteDAO.save(favorite),FavoriteDTO.class);
+        return favoriteDTO;
     }
 
-    @Override
+    @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
     public void update(FavoriteDTO FavoriteDto) {
 
     }
 
     @Override
     public void remove(Integer id) {
-
+        favoriteDAO.deleteById(id);
     }
-    @Transactional(rollbackFor = {Exception.class, Throwable.class})
-    public Favorite checkInDB(int idCustomer, int idProduct) {
-//    	Customer c = customerDAO.findById(idCustomer).orElse(null);
-//    	Product p = productDAO.findById(idProduct).orElse(null);
-//    	Favorite f = favoriteDAO.findByCustomerAndProduct(p, c);
-//
-//    	if (f==null) {
-//    		favoriteDAO.save(new Favorite(null, new Date(), p, c));
-//    		return f;
-//    	}
-//    	else {
-//    		favoriteDAO.delete(f);
-//    		return null;
-//    	}
-//
-    	return null;
+    @Override
+    public boolean checkExistsFavorite(String idUsername, Integer idProduct) {
+        return favoriteDAO.checkExistsByIdProductAndUserName(idProduct,idUsername);
     }
 
     
