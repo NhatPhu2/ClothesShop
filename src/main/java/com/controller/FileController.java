@@ -2,6 +2,7 @@ package com.controller;
 
 import com.service.FileService;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1")
+@RequiredArgsConstructor
 public class FileController {
-	@Autowired
-	private FileService fileService;
+
+	private final FileService fileService;
 
 	@PostMapping("admin/upload")
 	public ResponseEntity<Object> upload(@RequestPart("file") MultipartFile multipartFile) {

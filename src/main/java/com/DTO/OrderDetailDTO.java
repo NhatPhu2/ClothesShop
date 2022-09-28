@@ -11,11 +11,10 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 public class OrderDetailDTO implements Serializable {
-    private Integer idOderDetail;
     private int quantity;
     private double amount;
     private String colorName;
     private String sizeName;
     private Integer idProduct;
-    private Integer idOrder;
+    private Integer orderId;
 }

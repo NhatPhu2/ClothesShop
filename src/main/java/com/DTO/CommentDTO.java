@@ -13,4 +13,6 @@ public class CommentDTO implements Serializable {
     private Integer idComment;
     private String description;
     private Date commentDate;
+    private Integer idProduct;
+    private String idUsernameAccount;
 }

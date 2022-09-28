@@ -5,6 +5,7 @@ import com.DTO.ProductSizesDTO;
 import com.DTO.SizeDTO;
 import com.service.ProductSizesService;
 import com.service.ProductStyleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,10 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/v1")
+@RequiredArgsConstructor
 public class ProductSizesController {
-    @Autowired
-    ProductSizesService productSizesService;
+
+   private final ProductSizesService productSizesService;
 
     @PostMapping("admin/productsizes")
     public ResponseEntity<ProductSizesDTO> addNewProductSize(@Valid @RequestBody ProductSizesDTO productSizesDTO){

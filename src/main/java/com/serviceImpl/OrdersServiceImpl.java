@@ -5,17 +5,17 @@ import com.DTO.OrdersDTO;
 import com.entity.Orders;
 import com.service.OrdersService;
 import com.utils.Convert;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+@RequiredArgsConstructor
 public class OrdersServiceImpl implements OrdersService {
-    @Autowired
-    OrdersDAO ordersDAO;
 
-    @Autowired
-    Convert convert;
+    private final OrdersDAO ordersDAO;
+    private final Convert convert;
     @Override
     public List<OrdersDTO> findAll() {
         return null;

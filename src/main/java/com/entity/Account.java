@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "account")
 public class Account {
     @Id @Column(length = 100)
-    private String username;
+    private String idUsername;
     @Column(nullable = false,length = 100)
     private String password;
     @Column(nullable = false,columnDefinition = "nvarchar(60)")
@@ -29,12 +29,12 @@ public class Account {
     @OneToMany(mappedBy = "authorityAccount" , fetch = FetchType.EAGER)
     List<Authorities> authorities;
 
-    @OneToMany(mappedBy = "commentAccount", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     List<Comment> comments;
 
-    @OneToMany(mappedBy = "favoriteAccount", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     List<Favorite> favorites;
 
-    @OneToMany(mappedBy = "orderAccount", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     List<Orders> orders;
 }

@@ -18,6 +18,6 @@ public class Size {
     @Column(nullable = false, length = 20)
     private String nameSize;
 
-    @OneToMany(mappedBy = "sizeProduct",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "size",fetch = FetchType.LAZY)
     List<ProductSizes> productSizess;
 }

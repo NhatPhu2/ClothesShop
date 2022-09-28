@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface CommentDAO extends JpaRepository<Comment,Integer> {
-    @Query("select  o from Comment  o where o.commentProduct.idProduct=?1")
+    @Query("select  o from Comment  o where o.product.idProduct=?1")
     List<Comment> findAllByIdProduct(Integer idProduct);
 }

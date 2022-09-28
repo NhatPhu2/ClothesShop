@@ -5,6 +5,7 @@ import com.DTO.CommentDTO;
 import com.entity.Comment;
 import com.service.CommentService;
 import com.utils.Convert;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +14,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
-    @Autowired
-    CommentDAO commentDAO;
-
-    @Autowired
-    Convert convert;
+    private final CommentDAO commentDAO;
+    private final Convert convert;
     @Override
     public List<CommentDTO> findAll() {
 
@@ -31,8 +30,10 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})
-    public CommentDTO create(CommentDTO CommentDto) {
-        return null;
+    public CommentDTO create(CommentDTO commentDto) {
+        Comment comment = convert.toEntity(commentDto,Comment.class);
+        CommentDTO commentDTO = convert.toDto(commentDAO.save(comment),CommentDTO.class);
+        return commentDTO;
     }
 
     @Override @Transactional(rollbackFor = {Exception.class, Throwable.class})

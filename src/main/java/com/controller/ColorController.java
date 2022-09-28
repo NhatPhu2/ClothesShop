@@ -2,6 +2,7 @@ package com.controller;
 
 import com.DTO.ColorDTO;
 import com.service.ColorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin
+@RequiredArgsConstructor
 public class ColorController {
-    @Autowired
-    ColorService colorService;
+
+    private final ColorService colorService;
 
     @GetMapping("user/colors")
     public ResponseEntity<List<ColorDTO>> getAll(){

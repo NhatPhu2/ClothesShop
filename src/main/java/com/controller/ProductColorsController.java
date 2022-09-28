@@ -4,6 +4,7 @@ import com.DTO.ColorDTO;
 import com.DTO.ProductColorsDTO;
 import com.DTO.SizeDTO;
 import com.service.ProductColorsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,11 @@ import java.util.Optional;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/v1")
+@RequiredArgsConstructor
 public class ProductColorsController {
 
-    @Autowired
-    ProductColorsService productColorsService;
+
+    private final ProductColorsService productColorsService;
 
 
     @GetMapping("user/productcolor/detail/{idProduct}/{idColor}")
