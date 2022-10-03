@@ -3,16 +3,23 @@ package com.serviceImpl;
 import com.DAO.ProductColorsDAO;
 import com.DTO.ColorDTO;
 import com.DTO.ProductColorsDTO;
+import com.DTO.ProductDTO;
 import com.entity.Color;
+import com.entity.Product;
 import com.entity.ProductColors;
 import com.service.ProductColorsService;
 import com.utils.Convert;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,12 +32,19 @@ public class ProductColorsServiceImpl implements ProductColorsService {
     private final Convert convert;
 
     @Override
-    public List<ProductColorsDTO> findAll() {
-        List<ProductColors> productColor = productColorsDAO.findAll();
+    public Map<String,Object> findAll(int page,int size) {
+        Map<String,Object> productColors = new HashMap<>();
+        Pageable pageable = PageRequest.of(page,size);
+        Page<ProductColors> productColor = productColorsDAO.findAll(pageable);
         List<ProductColorsDTO> productColorsDTOS = productColor.stream()
                 .map(product -> convert.toDto(product, ProductColorsDTO.class))
                 .collect(Collectors.toList());
-        return productColorsDTOS;
+        productColors.put("products",productColorsDTOS);
+        productColors.put("totalPages",productColor.getTotalPages());
+        productColors.put("currentPage",productColor.getNumber());
+        productColors.put("first",productColor.isFirst());
+        productColors.put("last",productColor.isLast());
+        return productColors;
     }
 
     @Override
@@ -75,20 +89,30 @@ public class ProductColorsServiceImpl implements ProductColorsService {
     }
 
     @Override
-    public List<ProductColorsDTO> findByColor(Integer idColor) {
-        List<ProductColors> productColors = productColorsDAO.fillByColor(idColor);
-        List<ProductColorsDTO> ProductColorsDTO= productColors.stream()
-                .map(productColor -> convert.toDto(productColor, ProductColorsDTO.class))
+    public Map<String,Object> findByColor(Integer idColor,int page, int size) {
+        Map<String,Object> productColors = new HashMap<>();
+        Pageable pageable = PageRequest.of(page,size);
+        Page<ProductColors> productColor = productColorsDAO.fillByColor(idColor,pageable);
+        List<ProductColorsDTO> productColorDTO = productColor.stream()
+                .map(product -> convert.toDto(product, ProductColorsDTO.class))
                 .collect(Collectors.toList());
-        return ProductColorsDTO;
+        productColors.put("products",productColorDTO);
+        productColors.put("totalPages",productColor.getTotalPages());
+        productColors.put("currentPage",productColor.getNumber());
+        return productColors;
     }
 
     @Override
-    public List<ProductColorsDTO> fillBySize(Integer idSize) {
-        List<ProductColors> productColors = productColorsDAO.fillBySize(idSize);
-        List<ProductColorsDTO> ProductColorsDTO= productColors.stream()
-                .map(productColor -> convert.toDto(productColor, ProductColorsDTO.class))
+    public Map<String,Object> fillBySize(Integer idSize,int page,int size){
+        Map<String,Object> productColors = new HashMap<>();
+        Pageable pageable = PageRequest.of(page,size);
+        Page<ProductColors> productColor = productColorsDAO.fillBySize(idSize,pageable);
+        List<ProductColorsDTO> productColorDTO = productColor.stream()
+                .map(product -> convert.toDto(product, ProductColorsDTO.class))
                 .collect(Collectors.toList());
-        return ProductColorsDTO;
+        productColors.put("products",productColorDTO);
+        productColors.put("totalPages",productColor.getTotalPages());
+        productColors.put("currentPage",productColor.getNumber());
+        return productColors;
     }
 }

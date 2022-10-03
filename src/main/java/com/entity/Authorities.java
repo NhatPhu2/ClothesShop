@@ -17,8 +17,8 @@ public class Authorities {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAuthorities;
     @ManyToOne @JoinColumn(name ="idUsername")
-    private Account authorityAccount;
+    private Account account;
     @ManyToOne @JoinColumn(name ="idRole")
-    private Role authorityRole;
+    private Role role;
 
 }

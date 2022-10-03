@@ -11,5 +11,5 @@ public interface FavoriteService {
     FavoriteDTO create(FavoriteDTO FavoriteDto);
     void update(FavoriteDTO FavoriteDto);
     void remove(Integer id);
-    boolean checkExistsFavorite(String idUsername, Integer idProduct);
+    Integer checkExistsFavorite(String idUsername, Integer idProduct);
 }

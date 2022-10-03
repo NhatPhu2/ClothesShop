@@ -26,7 +26,7 @@ public class Account {
     @Column(length = 50)
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "authorityAccount" , fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "account" , fetch = FetchType.EAGER)
     List<Authorities> authorities;
 
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)

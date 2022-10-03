@@ -101,7 +101,7 @@ public class LoginController {
                     String access_token = JWT.create().withSubject(user.getIdUsername())
                             .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
 //                            .withIssuer(request.getRequestURL().toString())
-                            .withClaim("roles",user.getAuthorities().stream().map(role -> role.getAuthorityRole().getIdRole()).collect(Collectors.toList()))
+                            .withClaim("roles",user.getAuthorities().stream().map(role -> role.getRole().getIdRole()).collect(Collectors.toList()))
                             .sign(algorithm);
 
                     Map<String,String> tokens = new HashMap<>();

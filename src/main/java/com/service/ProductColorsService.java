@@ -3,11 +3,13 @@ package com.service;
 import com.DTO.ColorDTO;
 import com.DTO.ProductColorsDTO;
 import com.entity.Color;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductColorsService {
-    List<ProductColorsDTO> findAll();
+    Map<String,Object> findAll(int page, int size);
     ProductColorsDTO findById(Integer id);
 
     ProductColorsDTO findByIdColorAndIdProduct(Integer idColor, Integer idProduct);
@@ -18,7 +20,7 @@ public interface ProductColorsService {
 
     List<ColorDTO> findByIdProduct(Integer idProduct);
 
-    List<ProductColorsDTO> findByColor(Integer idColor);
+    Map<String,Object> findByColor(Integer idColor,int page,int size);
 
-    List<ProductColorsDTO> fillBySize(Integer idSize);
+    Map<String,Object> fillBySize(Integer idSize,int page,int size);
 }

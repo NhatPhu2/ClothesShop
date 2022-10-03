@@ -10,5 +10,4 @@ import java.io.Serializable;
 public class FavoriteDTO implements Serializable {
     private Integer idProduct;
     private String  idUsernameAccount;
-    private Integer idFavorite;
 }

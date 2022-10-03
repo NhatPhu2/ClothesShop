@@ -1,5 +1,6 @@
 package com.DAO;
 
+import com.entity.OrderDetail;
 import com.entity.Orders;
 import com.entity.ReportBestSellingProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,5 +13,7 @@ import java.util.List;
 
 @Repository
 public interface OrdersDAO extends JpaRepository<Orders,Integer> {
+
+
 
 }

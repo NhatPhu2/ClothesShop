@@ -30,9 +30,9 @@ public class FavoritesController {
 
     @PostMapping("user/favorites")
     public ResponseEntity<?> favorite(@RequestBody FavoriteDTO favoriteDTO) {
-        boolean liked = favoriteService.checkExistsFavorite(favoriteDTO.getIdUsernameAccount(), favoriteDTO.getIdProduct());
-        if (liked){ //nếu đã like sản phẩm thì sẽ unlike
-            deleteFavorite(favoriteDTO.getIdFavorite());
+        Integer liked = favoriteService.checkExistsFavorite(favoriteDTO.getIdUsernameAccount(), favoriteDTO.getIdProduct());
+        if (liked!=null){ //nếu đã like sản phẩm thì sẽ unlike
+            deleteFavorite(liked);
             return ResponseEntity.ok(false);
         }
 		else //ngược lại là like

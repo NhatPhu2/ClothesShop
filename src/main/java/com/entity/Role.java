@@ -18,7 +18,7 @@ public class Role {
     @Column(nullable = false,columnDefinition = "nvarchar(50)")
     private String nameRole;
 
-    @OneToMany(mappedBy = "authorityRole")
+    @OneToMany(mappedBy = "role")
     List<Authorities> roles;
 
 }
