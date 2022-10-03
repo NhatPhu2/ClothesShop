@@ -8,8 +8,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 public class AuthoritiesDTO implements Serializable {
-    private String fullname;
-    private String email;
-    private String photo;
-    private String phoneNumber;
+    private String roleId;
+    private String accountIdUsername;
+    private Long idAuthorities;
 }

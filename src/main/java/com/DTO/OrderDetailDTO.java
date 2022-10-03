@@ -16,5 +16,6 @@ public class OrderDetailDTO implements Serializable {
     private String colorName;
     private String sizeName;
     private Integer idProduct;
-    private Integer orderId;
+    private String nameProduct;
+    private Integer ordersId;
 }

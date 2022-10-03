@@ -80,7 +80,7 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
 //                throw new UsernameNotFoundException("Not found user");
             // Tạo UserDetails từ Account
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            account.getAuthorities().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getAuthorityRole().getIdRole())));
+            account.getAuthorities().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRole().getIdRole())));
             return new User(account.getIdUsername(),passwordEncoder.encode(account.getPassword())  , authorities);
     }
 }

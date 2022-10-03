@@ -57,7 +57,7 @@ public class FavoriteServiceImpl implements FavoriteService {
         favoriteDAO.deleteById(id);
     }
     @Override
-    public boolean checkExistsFavorite(String idUsername, Integer idProduct) {
+    public Integer checkExistsFavorite(String idUsername, Integer idProduct) {
         return favoriteDAO.checkExistsByIdProductAndUserName(idProduct,idUsername);
     }
 

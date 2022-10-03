@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -33,9 +34,11 @@ public class ProductColorsController {
     }
 
 
-    @GetMapping("user/productcolor/{idColor}")
-    public ResponseEntity<List<ProductColorsDTO>> getAllProductByColor(@PathVariable Integer idColor){
-        return ResponseEntity.ok(productColorsService.findByColor(idColor));
+    @GetMapping("user/productcolor")
+    public ResponseEntity<Map<String,Object>> getAllProductByColor(@RequestParam Integer idColor,
+                                                                   @RequestParam Optional<Integer> pageNum,
+                                                                   @RequestParam Optional<Integer> size){
+        return ResponseEntity.ok(productColorsService.findByColor(idColor,pageNum.orElse(0),size.orElse(10)));
     }
 
     @PostMapping("admin/productcolor")
@@ -60,9 +63,11 @@ public class ProductColorsController {
         return ResponseEntity.ok(productColorsService.findByIdProduct(idProduct));
     }
 
-    @GetMapping("user/productcolor/bysize/{idSize}")
-    public ResponseEntity<List<ProductColorsDTO>> getProductColorBySize(@PathVariable  Integer idSize){
-        return ResponseEntity.ok(productColorsService.fillBySize(idSize));
+    @GetMapping("user/productcolor/bysize")
+    public ResponseEntity<Map<String,Object>> getProductColorBySize(@RequestParam  Integer idSize,
+                                                                        @RequestParam Optional<Integer> pageNum,
+                                                                        @RequestParam Optional<Integer> size){
+        return ResponseEntity.ok(productColorsService.fillBySize(idSize,pageNum.orElse(0),size.orElse(10)));
     }
 
 }

@@ -11,7 +11,11 @@ public interface OrderDetailService {
     OrderDetailDTO findById(Integer id);
     OrderDetailDTO create(OrderDetailDTO OrderDetailDto);
 
-    List<ReportBestSellingProduct> reportBestSellingProducts(Integer fromYear,Integer toYear,Integer month);
+    List<OrderDetailDTO> createAll(List<OrderDetailDTO> orderDetailDTO);
+
+    List<OrderDetailDTO> findAllByUsername(String username);
+
+    List<ReportBestSellingProduct> reportBestSellingProducts(Integer fromYear, Integer toYear, Integer month);
 
     void update(OrderDetailDTO OrderDetailDto);
     void remove(Integer id);

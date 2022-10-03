@@ -12,11 +12,14 @@ import java.util.List;
 
 @Repository
 public interface OrderDetailDAO extends JpaRepository<OrderDetail,Integer> {
-    @Query("select  new ReportBestSellingProduct(o.product.idProduct,o.product.nameProduct," +
+    @Query("select new ReportBestSellingProduct(o.product.idProduct,o.product.nameProduct," +
             "count(o.quantity),sum(o.amount),o.product.price) from OrderDetail o " +
-            "where month(o.order.createDate) >= :month and " +
-            "year(o.order.createDate) between :fromYear and :toYear")
+            "where month(o.orders.createDate) >= :month and " +
+            "year(o.orders.createDate) between :fromYear and :toYear")
     List<ReportBestSellingProduct> reportBestSellingOfProduct(@Param("fromYear") Integer fromYear,
                                                               @Param("toYear") Integer toYear,
                                                               @Param("month") Integer month);
+
+    @Query("select o from OrderDetail o where o.orders.account.idUsername=?1")
+    List<OrderDetail> getOrderDetailsByUser(String username);
 }
