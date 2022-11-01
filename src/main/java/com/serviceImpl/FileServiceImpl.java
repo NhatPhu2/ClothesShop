@@ -34,7 +34,7 @@ public class FileServiceImpl implements FileService {
                 setProjectId("springboot-mall").build().getService();
         storage.create(blobInfo, Files.readAllBytes(file.toPath()));
        
-        return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
+        return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName, String.valueOf(StandardCharsets.UTF_8)));
     }
 
     private File convertToFile(MultipartFile multipartFile, String fileName) throws IOException {
