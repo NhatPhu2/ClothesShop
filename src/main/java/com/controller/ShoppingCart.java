@@ -3,14 +3,12 @@ package com.controller;
 
 import com.DTO.*;
 
+import com.google.common.collect.Lists;
 import com.pojo.Cart;
 import com.service.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -62,50 +60,50 @@ public class ShoppingCart {
         return ResponseEntity.ok(carts);
     }
 
-    @PostMapping("user/cart/payment") //thanh toán
-    public ResponseEntity<List<OrderDetailDTO>> pay(@RequestBody Map<String, Cart> cart,
-                                                    @RequestParam String address) {
-        String username =  SecurityContextHolder.getContext().getAuthentication().getName();
-        OrdersDTO ordersDTO = new OrdersDTO();
-        ordersDTO.setAddress(address);
-        ordersDTO.setIdUsernameAccount(username);
-        Integer idOder = ordersService.create(ordersDTO).getIdOrder();//thêm vào bảng hóa đơn và trả về id hóa đơn
-        //-----------------------------
-
-//        List<OrderDetailDTO> orderDetailDTOS = cart.values().stream().map(valueCart -> {
-//            OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
-//            //cập nhật lại số lượng sản phẩm
-//            ProductSizesDTO productSizesDTO = productSizesService.findByIdProductColorsAndIdSize(valueCart.getIdSize(),valueCart.getIdProductsColors());
-//            productSizesDTO.setQuantity(productSizesDTO.getQuantity() - valueCart.getQuantity());
-//            productSizesService.update(productSizesDTO);
-//            //thanh toán và trả về hóa đơn chi tiết cho người dùng
-//            orderDetailDTO.setQuantity(valueCart.getQuantity());
-//            orderDetailDTO.setAmount(valueCart.getAmount());
-//            orderDetailDTO.setIdProduct(valueCart.getIdProduct());
-//            orderDetailDTO.setColorName(valueCart.getNameColor());
-//            orderDetailDTO.setSizeName(valueCart.getNameSize());
-//            orderDetailDTO.setOrderId(idOder);
-//            return orderDetailDTO;
-//        }).collect(Collectors.toList());//chuyển đổi map sang list
-        OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
-        orderDetailDTO.setQuantity(10);
-        orderDetailDTO.setAmount(100);
-        orderDetailDTO.setIdProduct(1);
-        orderDetailDTO.setColorName("đỏ");
-        orderDetailDTO.setSizeName("M");
-        orderDetailDTO.setOrdersId(idOder);
-
-        OrderDetailDTO orderDetailDTO1 = new OrderDetailDTO();
-        orderDetailDTO1.setQuantity(10);
-        orderDetailDTO1.setAmount(100);
-        orderDetailDTO1.setIdProduct(2);
-        orderDetailDTO1.setColorName("đỏ");
-        orderDetailDTO1.setSizeName("M");
-        orderDetailDTO1.setOrdersId(idOder);
-
-
-
-        return ResponseEntity.ok(orderDetailService.createAll(List.of(orderDetailDTO,orderDetailDTO1)));//trả về hóa đơn chi tiết cho người dùng
-    }
+//    @PostMapping("user/cart/payment") //thanh toán
+//    public ResponseEntity<List<OrderDetailDTO>> pay(@RequestBody Map<String, Cart> cart,
+//                                                    @RequestParam String address) {
+//        String username =  SecurityContextHolder.getContext().getAuthentication().getName();
+//        OrdersDTO ordersDTO = new OrdersDTO();
+//        ordersDTO.setAddress(address);
+//        ordersDTO.setIdUsernameAccount(username);
+//        Integer idOder = ordersService.create(ordersDTO).getIdOrder();//thêm vào bảng hóa đơn và trả về id hóa đơn
+//        //-----------------------------
+//
+////        List<OrderDetailDTO> orderDetailDTOS = cart.values().stream().map(valueCart -> {
+////            OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
+////            //cập nhật lại số lượng sản phẩm
+////            ProductSizesDTO productSizesDTO = productSizesService.findByIdProductColorsAndIdSize(valueCart.getIdSize(),valueCart.getIdProductsColors());
+////            productSizesDTO.setQuantity(productSizesDTO.getQuantity() - valueCart.getQuantity());
+////            productSizesService.update(productSizesDTO);
+////            //thanh toán và trả về hóa đơn chi tiết cho người dùng
+////            orderDetailDTO.setQuantity(valueCart.getQuantity());
+////            orderDetailDTO.setAmount(valueCart.getAmount());
+////            orderDetailDTO.setIdProduct(valueCart.getIdProduct());
+////            orderDetailDTO.setColorName(valueCart.getNameColor());
+////            orderDetailDTO.setSizeName(valueCart.getNameSize());
+////            orderDetailDTO.setOrderId(idOder);
+////            return orderDetailDTO;
+////        }).collect(Collectors.toList());//chuyển đổi map sang list
+//        OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
+//        orderDetailDTO.setQuantity(10);
+//        orderDetailDTO.setAmount(100);
+//        orderDetailDTO.setIdProduct(1);
+//        orderDetailDTO.setColorName("đỏ");
+//        orderDetailDTO.setSizeName("M");
+//        orderDetailDTO.setOrdersId(idOder);
+//
+//        OrderDetailDTO orderDetailDTO1 = new OrderDetailDTO();
+//        orderDetailDTO1.setQuantity(10);
+//        orderDetailDTO1.setAmount(100);
+//        orderDetailDTO1.setIdProduct(2);
+//        orderDetailDTO1.setColorName("đỏ");
+//        orderDetailDTO1.setSizeName("M");
+//        orderDetailDTO1.setOrdersId(idOder);
+//
+//
+//
+//        return ResponseEntity.ok(orderDetailService.createAll(Lists.asList(orderDetailDTO, orderDetailDTO1)));//trả về hóa đơn chi tiết cho người dùng
+//    }
 
 }
